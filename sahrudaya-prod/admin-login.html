@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login | SAHRUDAYA</title>
+  <link rel="icon" type="image/jpeg" href="/SWAN_LOGO.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg: #f5f7f2; --panel: #ffffff; --border: rgba(24,112,100,.18); --text: #183b3a; --muted: #58716f; --accent: #e87958; --accent-strong: #c85b3e; --teal: #187064; }
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 1.5rem; background: radial-gradient(circle at top left, rgba(242,193,78,.22), transparent 28%), radial-gradient(circle at 85% 12%, rgba(24,112,100,.16), transparent 30%), linear-gradient(180deg, #fbfcf7 0%, #f5f7f2 48%, #eaf3ed 100%); color: var(--text); font-family: 'Poppins', sans-serif; }
+    .login-card { width: min(100%, 420px); padding: 2.5rem; background: rgba(255,255,255,.9); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 24px 70px rgba(24,59,58,.14); }
+    h1 { margin: 0 0 .5rem; font-size: 2rem; }
+    .intro { margin: 0 0 2rem; color: var(--muted); }
+    label { display: block; margin-top: 1rem; color: var(--muted); font-size: .9rem; }
+    input { width: 100%; margin-top: .45rem; padding: .85rem 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font: inherit; }
+    input:focus { outline: 2px solid var(--teal); outline-offset: 1px; }
+    button { width: 100%; margin-top: 1.5rem; padding: .9rem 1rem; border: 0; border-radius: 8px; background: var(--accent); color: white; cursor: pointer; font: inherit; font-weight: 600; }
+    button:hover { background: var(--accent-strong); }
+    .status { min-height: 1.5rem; margin: 1rem 0 0; color: #b54736; font-size: .9rem; }
+    .back { display: inline-block; margin-top: 1rem; color: var(--teal); font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <main class="login-card">
+    <h1>Admin sign in</h1>
+    <p class="intro">Access the SAHRUDAYA contact messages.</p>
+    <form id="login-form">
+      <label>Username <input name="username" autocomplete="username" required /></label>
+      <label>Password <input type="password" name="password" autocomplete="current-password" required /></label>
+      <button type="submit">Sign in</button>
+      <p id="status" class="status" role="alert"></p>
+    </form>
+    <a class="back" href="/">Back to site</a>
+  </main>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+      const status = document.getElementById('status');
+      status.textContent = '';
+      try {
+        const response = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: form.get('username'), password: form.get('password') }),
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.message || 'Unable to sign in');
+        window.location.href = '/admin.html';
+      } catch (error) {
+        status.textContent = error.message;
+      }
+    });
+  </script>
+</body>
+</html>

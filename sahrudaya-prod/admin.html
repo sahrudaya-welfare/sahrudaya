@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAHRUDAYA - Admin Messages</title>
+  <link rel="icon" type="image/jpeg" href="/SWAN_LOGO.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f5f7f2;
+      --surface: #ffffff;
+      --border: rgba(24, 112, 100, 0.18);
+      --text: #183b3a;
+      --muted: #58716f;
+      --accent: #187064;
+      --accent-hover: #c85b3e;
+      --danger: #c85b3e;
+      --sun: #f2c14e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', system-ui, sans-serif;
+      line-height: 1.6;
+      padding: 1.25rem;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #94a3b8;
+      opacity: 0.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .page-kicker {
+      margin: 0 0 0.3rem;
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .page-subtitle {
+      margin: 0.35rem 0 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .back-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.84rem;
+    }
+
+    .back-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .member-admin {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .member-admin h2,
+    .gallery-admin h2 {
+      margin: 0 0 0.75rem;
+      color: var(--text);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.1rem 1.25rem;
+      text-align: left;
+    }
+
+    .stat-card h3 {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .stat-card .number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 0.5rem;
+    }
+
+    .messages-container {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .message-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .message-card h3 {
+      margin: 0 0 0.5rem;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .message-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .message-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .message-content {
+      background: #eef5f1;
+      border-left: 3px solid var(--sun);
+      padding: 0.8rem;
+      border-radius: 6px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+    }
+
+    .empty-state h2 {
+      font-size: 1.5rem;
+      margin: 0.75rem 0 0.35rem;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 1.25rem;
+      color: var(--muted);
+    }
+
+    .gallery-admin {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .upload-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .upload-row button,
+    .delete-image {
+      background: var(--accent);
+      color: #fff;
+      border: 0;
+      border-radius: 8px;
+      padding: 0.7rem 1rem;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 600;
+    }
+
+    .image-adjuster {
+      display: none;
+      grid-template-columns: minmax(280px, 620px) minmax(220px, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+      align-items: start;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .image-adjuster.active {
+      display: grid;
+    }
+
+    .adjust-preview {
+      width: 100%;
+      aspect-ratio: 16 / 8.5;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #080c18;
+    }
+
+    .adjust-preview canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .adjust-controls {
+      display: grid;
+      gap: 0.85rem;
+      padding: 0.25rem;
+    }
+
+    .adjust-controls label {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .adjust-controls output {
+      justify-self: end;
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .adjust-controls input[type="range"] {
+      width: 100%;
+      height: 5px;
+      accent-color: var(--accent);
+      grid-column: 1 / -1;
+    }
+
+    .adjust-controls button {
+      width: 100%;
+      margin-top: 0.35rem;
+      background: var(--accent);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      font-weight: 700;
+    }
+
+    .adjust-controls button:hover {
+      background: var(--accent-hover);
+    }
+
+    .file-picker {
+      color: var(--muted);
+      font: inherit;
+    }
+
+    .file-picker::file-selector-button {
+      margin-right: 0.75rem;
+      padding: 0.65rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 600;
+    }
+
+    .image-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .image-item img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .image-item p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .delete-image {
+      background: var(--danger);
+      font-size: 0.85rem;
+    }
+
+    .delete-member {
+      margin-top: 0.75rem;
+      border: 1px solid rgba(220, 107, 117, 0.55);
+      border-radius: 7px;
+      padding: 0.55rem 0.8rem;
+      background: transparent;
+      color: #f3a5ac;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .delete-member:hover {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 0.75rem;
+      }
+
+      .image-adjuster {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <p class="page-kicker">SAHRUDAYA administration</p>
+        <h1>Community operations</h1>
+        <p class="page-subtitle">Review member registrations, contact requests, and gallery content.</p>
+      </div>
+      <div>
+        <a href="/" class="back-btn">Back to site</a>
+        <button type="button" id="logout-btn" class="back-btn">Log out</button>
+      </div>
+    </header>
+
+    <div class="stats">
+      <div class="stat-card">
+        <h3>Contact messages</h3>
+        <div class="number" id="total-count">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Registered members</h3>
+        <div class="number" id="member-count">0</div>
+      </div>
+    </div>
+
+    <section class="member-admin">
+      <h2>Member Registrations</h2>
+      <div id="member-loading" class="loading">
+        <p>Loading members...</p>
+      </div>
+      <div id="member-list" class="messages-container" style="display: none;"></div>
+      <div id="member-empty" class="empty-state" style="display: none;">
+        <p>No member registrations yet.</p>
+      </div>
+    </section>
+
+    <section class="member-admin">
+      <h2>Publish New Event</h2>
+      <form id="event-form" class="upload-row">
+        <input type="text" name="title" placeholder="Event title" required />
+        <input type="datetime-local" name="eventDate" required />
+        <input type="text" name="location" placeholder="Location" required />
+        <textarea name="description" placeholder="Event description" rows="3" required></textarea>
+        <button type="submit">Publish and email members</button>
+      </form>
+      <p id="event-status" class="message-meta"></p>
+    </section>
+
+    <section class="gallery-admin">
+      <h2>Gallery Images</h2>
+      <form id="upload-form" class="upload-row">
+        <input class="file-picker" type="file" id="image-file" accept="image/jpeg,image/png,image/webp,image/gif" required />
+      </form>
+      <div id="image-adjuster" class="image-adjuster">
+        <div class="adjust-preview">
+          <canvas id="adjust-canvas" width="1200" height="638"></canvas>
+        </div>
+        <div class="adjust-controls">
+          <label>Crop scale <output id="zoom-value">100%</output><input type="range" id="image-zoom" min="1" max="3" step="0.01" value="1" /></label>
+          <label>Focus left to right <output id="position-x-value">50%</output><input type="range" id="image-position-x" min="0" max="100" step="1" value="50" /></label>
+          <label>Focus top to bottom <output id="position-y-value">50%</output><input type="range" id="image-position-y" min="0" max="100" step="1" value="50" /></label>
+          <button type="submit" form="upload-form">Apply and upload</button>
+        </div>
+      </div>
+      <p id="upload-status" class="message-meta"></p>
+      <div id="image-list" class="image-list"></div>
+    </section>
+
+    <div id="loading" class="loading">
+      <p>Loading messages...</p>
+    </div>
+
+    <div id="messages" class="messages-container" style="display: none;"></div>
+
+    <div id="empty" class="empty-state" style="display: none;">
+      <p>No contact messages yet.</p>
+    </div>
+  </div>
+
+  <script>
+    async function loadMessages() {
+      try {
+        const response = await fetch('/api/contacts');
+        if (response.status === 401) {
+          window.location.href = '/admin-login.html';
+          return;
+        }
+        const messages = await response.json();
+
+        const loadingEl = document.getElementById('loading');
+        const messagesEl = document.getElementById('messages');
+        const emptyEl = document.getElementById('empty');
+        const totalEl = document.getElementById('total-count');
+
+        loadingEl.style.display = 'none';
+
+        if (messages.length === 0) {
+          emptyEl.style.display = 'block';
+          totalEl.textContent = '0';
+          return;
+        }
+
+        totalEl.textContent = messages.length;
+        messagesEl.style.display = 'grid';
+
+        messagesEl.innerHTML = messages
+          .map((msg) => {
+            const date = new Date(msg.created_at);
+            const formattedDate = date.toLocaleDateString();
+            const formattedTime = date.toLocaleTimeString();
+
+            return `
+              <div class="message-card">
+                <h3>${escapeHtml(msg.name)}</h3>
+                <div class="message-meta">
+                  <span>📧 ${escapeHtml(msg.email)}</span>
+                  <span>📅 ${formattedDate}</span>
+                  <span>🕐 ${formattedTime}</span>
+                </div>
+                <div class="message-content">
+                  ${escapeHtml(msg.message).replace(/\n/g, '<br>')}
+                </div>
+              </div>
+            `;
+          })
+          .join('');
+      } catch (error) {
+        console.error('Error loading messages:', error);
+        document.getElementById('loading').innerHTML = '<p>❌ Error loading messages</p>';
+      }
+    }
+
+    async function loadMembers() {
+      try {
+        const response = await fetch('/api/members');
+        if (response.status === 401) {
+          window.location.href = '/admin-login.html';
+          return;
+        }
+
+        const members = await response.json();
+        const loadingEl = document.getElementById('member-loading');
+        const listEl = document.getElementById('member-list');
+        const emptyEl = document.getElementById('member-empty');
+        const totalEl = document.getElementById('member-count');
+
+        loadingEl.style.display = 'none';
+
+        if (members.length === 0) {
+          emptyEl.style.display = 'block';
+          totalEl.textContent = '0';
+          return;
+        }
+
+        totalEl.textContent = members.length;
+        listEl.style.display = 'grid';
+
+        listEl.innerHTML = members
+          .map((member) => {
+            const date = new Date(member.created_at);
+            const formattedDate = date.toLocaleDateString();
+            const formattedTime = date.toLocaleTimeString();
+
+            return `
+              <div class="message-card">
+                <h3>${escapeHtml(member.name)}</h3>
+                <div class="message-meta">
+                  <span>📧 ${escapeHtml(member.email)}</span>
+                  <span>📞 ${escapeHtml(member.phone)}</span>
+                  <span>📍 ${escapeHtml(member.city)}</span>
+                  <span>📅 ${formattedDate}</span>
+                  <span>🕐 ${formattedTime}</span>
+                </div>
+                <div class="message-content">
+                  <strong>Interest:</strong> ${escapeHtml(member.interest)}
+                </div>
+                <button type="button" class="delete-member" data-id="${member.id}">Delete member</button>
+              </div>
+            `;
+          })
+          .join('');
+      } catch (error) {
+        console.error('Error loading members:', error);
+        document.getElementById('member-loading').innerHTML = '<p>❌ Error loading members</p>';
+      }
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    async function loadImages() {
+      const response = await fetch('/api/images');
+      if (response.status === 401) {
+        window.location.href = '/admin-login.html';
+        return;
+      }
+      const images = await response.json();
+      document.getElementById('image-list').innerHTML = images.map((image) => `
+        <div class="image-item">
+          <img src="${image.url}" alt="${escapeHtml(image.filename)}" />
+          <p title="${escapeHtml(image.filename)}">${escapeHtml(image.filename)}</p>
+          <button type="button" class="delete-image" data-id="${image.id}">Delete</button>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('upload-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const fileInput = document.getElementById('image-file');
+      const status = document.getElementById('upload-status');
+      const canvas = document.getElementById('adjust-canvas');
+      if (!fileInput.files.length) {
+        status.textContent = 'Choose an image first.';
+        return;
+      }
+      const formData = new FormData();
+      const adjustedImage = await new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.92));
+      formData.append('image', adjustedImage, `${fileInput.files[0].name.replace(/\.[^.]+$/, '')}-adjusted.jpg`);
+      status.textContent = 'Uploading...';
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 30000);
+        const response = await fetch('/api/images', { method: 'POST', body: formData, signal: controller.signal });
+        clearTimeout(timeout);
+        const result = await response.json();
+        if (response.status === 401) {
+          window.location.href = '/admin-login.html';
+          return;
+        }
+        status.textContent = result.message || (response.ok ? 'Image uploaded.' : 'Upload failed.');
+        if (response.ok) {
+          fileInput.value = '';
+          document.getElementById('image-adjuster').classList.remove('active');
+          loadImages();
+        }
+      } catch (error) {
+        status.textContent = error.name === 'AbortError'
+          ? 'Upload timed out. Check the server and database connection.'
+          : 'Upload failed. Check the server console.';
+      }
+    });
+
+    document.getElementById('event-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const status = document.getElementById('event-status');
+      const formData = new FormData(event.currentTarget);
+      status.textContent = 'Publishing event...';
+
+      try {
+        const response = await fetch('/api/events', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(formData.entries()))
+        });
+        const result = await response.json();
+        if (response.status === 401) {
+          window.location.href = '/admin-login.html';
+          return;
+        }
+        if (!response.ok) throw new Error(result.message || 'Unable to publish event.');
+        status.textContent = `Event published. Notifications sent to ${result.notifiedMembers} member(s).`;
+        event.currentTarget.reset();
+      } catch (error) {
+        status.textContent = error.message || 'Unable to publish event.';
+      }
+    });
+
+    const imageFile = document.getElementById('image-file');
+    const adjuster = document.getElementById('image-adjuster');
+    const canvas = document.getElementById('adjust-canvas');
+    const context = canvas.getContext('2d');
+    const zoomControl = document.getElementById('image-zoom');
+    const positionXControl = document.getElementById('image-position-x');
+    const positionYControl = document.getElementById('image-position-y');
+    const zoomValue = document.getElementById('zoom-value');
+    const positionXValue = document.getElementById('position-x-value');
+    const positionYValue = document.getElementById('position-y-value');
+    let sourceImage = null;
+
+    function drawAdjustedImage() {
+      if (!sourceImage) return;
+
+      zoomValue.textContent = `${Math.round(Number(zoomControl.value) * 100)}%`;
+      positionXValue.textContent = `${positionXControl.value}%`;
+      positionYValue.textContent = `${positionYControl.value}%`;
+
+      const canvasRatio = canvas.width / canvas.height;
+      const sourceRatio = sourceImage.naturalWidth / sourceImage.naturalHeight;
+      let cropWidth;
+      let cropHeight;
+
+      if (sourceRatio > canvasRatio) {
+        cropHeight = sourceImage.naturalHeight / Number(zoomControl.value);
+        cropWidth = cropHeight * canvasRatio;
+      } else {
+        cropWidth = sourceImage.naturalWidth / Number(zoomControl.value);
+        cropHeight = cropWidth / canvasRatio;
+      }
+
+      const maxX = sourceImage.naturalWidth - cropWidth;
+      const maxY = sourceImage.naturalHeight - cropHeight;
+      const cropX = maxX * Number(positionXControl.value) / 100;
+      const cropY = maxY * Number(positionYControl.value) / 100;
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(sourceImage, cropX, cropY, cropWidth, cropHeight, 0, 0, canvas.width, canvas.height);
+    }
+
+    imageFile.addEventListener('change', () => {
+      const file = imageFile.files[0];
+      if (!file) return;
+
+      const objectUrl = URL.createObjectURL(file);
+      sourceImage = new Image();
+      sourceImage.onload = () => {
+        URL.revokeObjectURL(objectUrl);
+        adjuster.classList.add('active');
+        drawAdjustedImage();
+      };
+      sourceImage.src = objectUrl;
+    });
+
+    [zoomControl, positionXControl, positionYControl].forEach((control) => {
+      control.addEventListener('input', drawAdjustedImage);
+    });
+
+    document.getElementById('image-list').addEventListener('click', async (event) => {
+      if (!event.target.matches('.delete-image')) return;
+      await fetch(`/api/images/${event.target.dataset.id}`, { method: 'DELETE' });
+      loadImages();
+    });
+
+    document.getElementById('member-list').addEventListener('click', async (event) => {
+      if (!event.target.matches('.delete-member')) return;
+      if (!window.confirm('Delete this member registration? This cannot be undone.')) return;
+
+      const response = await fetch(`/api/members/${event.target.dataset.id}`, { method: 'DELETE' });
+      if (response.status === 401) {
+        window.location.href = '/admin-login.html';
+        return;
+      }
+      if (!response.ok) {
+        document.getElementById('member-loading').innerHTML = '<p>Unable to delete member.</p>';
+        return;
+      }
+      loadMembers();
+    });
+
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+      await fetch('/api/admin/logout', { method: 'POST' });
+      window.location.href = '/admin-login.html';
+    });
+
+    window.addEventListener('pagehide', () => {
+      navigator.sendBeacon('/api/admin/logout', new Blob([], { type: 'application/json' }));
+    });
+
+    loadMessages();
+    loadMembers();
+    loadImages();
+  </script>
+</body>
+</html>

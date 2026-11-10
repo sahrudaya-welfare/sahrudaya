@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Member Dashboard | SAHRUDAYA</title>
+  <link rel="icon" type="image/jpeg" href="/SWAN_LOGO.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg: #0d1117; --panel: #151d29; --border: rgba(255,255,255,.12); --text: #f4f7fb; --muted: #a0aec0; --accent: #3b82f6; }
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; margin: 0; background: radial-gradient(circle at top, #182b48, var(--bg) 55%); color: var(--text); font-family: 'Poppins', sans-serif; padding: 2rem; }
+    .container { max-width: 920px; margin: 0 auto; }
+    .card { background: rgba(21,29,41,.92); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; box-shadow: 0 24px 70px rgba(0,0,0,.35); }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    h1 { margin: 0; }
+    button { border: 0; border-radius: 10px; background: var(--accent); color: white; padding: .8rem 1.25rem; font: inherit; cursor: pointer; }
+    .meta { display: grid; gap: .75rem; color: var(--muted); margin-top: 1.25rem; }
+    .meta strong { color: var(--text); }
+    .status { color: var(--muted); margin-top: 1rem; }
+    .status.error { color: #fca5a5; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <h1>Welcome, <span id="member-name">Member</span></h1>
+      <button id="logout-btn" type="button">Log out</button>
+    </div>
+
+    <div class="card">
+      <p class="status" id="status">Loading profile...</p>
+      <div class="meta">
+        <div><strong>Email:</strong> <span id="member-email">-</span></div>
+        <div><strong>City:</strong> <span id="member-city">-</span></div>
+        <div><strong>Interest:</strong> <span id="member-interest">-</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function loadMemberProfile() {
+      try {
+        const response = await fetch('/api/members/me', { credentials: 'same-origin' });
+        const contentType = response.headers.get('content-type') || '';
+
+        if (response.status === 401) {
+          window.location.href = '/member-login.html';
+          return;
+        }
+
+        if (!contentType.includes('application/json')) {
+          const text = await response.text();
+          if (text.includes('<!DOCTYPE')) {
+            window.location.href = '/member-login.html';
+            return;
+          }
+          throw new Error('Unexpected server response. Please log in again.');
+        }
+
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message || 'Unable to load profile');
+
+        document.getElementById('member-name').textContent = data.name || 'Member';
+        document.getElementById('member-email').textContent = data.email || '-';
+        document.getElementById('member-city').textContent = data.city || '-';
+        document.getElementById('member-interest').textContent = data.interest || '-';
+        document.getElementById('status').textContent = 'Your account is active and verified.';
+        document.getElementById('status').classList.remove('error');
+      } catch (error) {
+        document.getElementById('status').classList.add('error');
+        document.getElementById('status').textContent = error.message || 'Unable to load profile';
+      }
+    }
+
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+      await fetch('/api/members/logout', { method: 'POST' });
+      window.location.href = '/member-login.html';
+    });
+
+    loadMemberProfile();
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Member Registration | SAHRUDAYA</title>
+  <link rel="icon" type="image/jpeg" href="/SWAN_LOGO.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg: #f5f7f2; --panel: #ffffff; --border: rgba(24,112,100,.18); --text: #183b3a; --muted: #58716f; --accent: #187064; --accent-hover: #c85b3e; --success: #187064; }
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; margin: 0; display: grid; align-items: start; padding: 1rem; background: radial-gradient(circle at top left, rgba(242,193,78,.22), transparent 30%), linear-gradient(180deg, #fbfcf7 0%, var(--bg) 100%); color: var(--text); font-family: 'Poppins', sans-serif; }
+    .form-card { width: min(100%, 500px); margin: auto; padding: 1.5rem; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 18px 48px rgba(24,59,58,.12); }
+    h1 { margin: 0 0 .35rem; font-size: 1.55rem; }
+    .intro { margin: 0 0 1rem; color: var(--muted); }
+    form { display: grid; gap: .75rem; }
+    label { display: block; color: var(--muted); font-size: .9rem; }
+    input, select { width: 100%; margin-top: .35rem; padding: .7rem .8rem; border: 1px solid var(--border); border-radius: 6px; background: #fff; color: var(--text); font: inherit; }
+    select option { color: var(--text); background: #fff; }
+    input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    button { width: 100%; margin-top: .25rem; padding: .75rem 1rem; border: 0; border-radius: 6px; background: var(--accent); color: white; cursor: pointer; font: inherit; font-weight: 600; }
+    button:hover { background: var(--accent-hover); }
+    .status { min-height: 1.35rem; margin-top: .65rem; color: #b54343; font-size: .88rem; }
+    .status.success { color: var(--success); }
+    .links { margin-top: .75rem; display: flex; justify-content: space-between; gap: .75rem; font-size: .86rem; }
+    .links a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <main class="form-card">
+    <h1>Register as a member</h1>
+    <p class="intro">Create your SAHRUDAYA member account and verify your email to get started.</p>
+    <form id="member-register-form">
+      <label>Full Name <input type="text" name="name" required /></label>
+      <label>Email <input type="email" name="email" required /></label>
+      <label>Phone <input type="tel" name="phone" required /></label>
+      <label>City <input type="text" name="city" required /></label>
+      <label>Area of Interest
+        <select name="interest" required>
+          <option value="">Select an area</option>
+          <option value="Education">Education</option>
+          <option value="Community Service">Community Service</option>
+          <option value="Leadership">Leadership</option>
+          <option value="Health and Wellness">Health and Wellness</option>
+          <option value="Volunteer Programs">Volunteer Programs</option>
+        </select>
+      </label>
+      <label>Password <input type="password" name="password" minlength="6" required /></label>
+      <button type="submit">Create account</button>
+      <p id="status" class="status" role="alert"></p>
+    </form>
+    <div class="links">
+      <a href="/">Back to site</a>
+      <a href="/member-login.html">Already have an account?</a>
+    </div>
+    
+  </main>
+  <script>
+    const registerForm = document.getElementById('member-register-form');
+    const status = document.getElementById('status');
+
+    if (registerForm && status) {
+      registerForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = new FormData(event.currentTarget);
+        status.textContent = '';
+        status.classList.remove('success');
+        try {
+          const response = await fetch('/api/members/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: form.get('name'),
+              email: form.get('email'),
+              phone: form.get('phone'),
+              city: form.get('city'),
+              interest: form.get('interest'),
+              password: form.get('password')
+            })
+          });
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.message || 'Registration failed');
+          status.textContent = result.message || 'Registration successful. Verify your email.';
+          status.classList.add('success');
+          event.currentTarget.reset();
+        } catch (error) {
+          status.textContent = error.message;
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "sahrudaya",
+  "version": "1.0.0",
+  "description": "sahrudaya website with MongoDB contact storage",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.4",
+    "multer": "^2.4.0",
+    "nodemailer": "^10.0.10",
+    "pg": "^8.11.0"
+  }
+}
