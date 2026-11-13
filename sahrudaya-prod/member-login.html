@@ -30,10 +30,10 @@
 </head>
 <body>
   <main class="login-card">
-    <h1>Member login</h1>
-    <p class="intro">Access your SAHRUDAYA member account.</p>
+    <h1>Sign in</h1>
+    <p class="intro">Access your SAHRUDAYA member or administrator account.</p>
     <form id="member-login-form">
-      <label>Email <input type="email" name="email" autocomplete="email" required /></label>
+      <label>Email or Username <input type="text" name="identifier" autocomplete="username" placeholder="you@example.com or admin" required /></label>
       <label>Password <input type="password" name="password" autocomplete="current-password" required /></label>
       <button type="submit">Sign in</button>
       <p id="status" class="status" role="alert"></p>
@@ -59,13 +59,24 @@
         const response = await fetch('/api/members/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: form.get('email'), password: form.get('password') })
+          body: JSON.stringify({ identifier: form.get('identifier'), password: form.get('password') })
         });
         const result = await response.json();
-        if (!response.ok) throw new Error(result.message || 'Unable to sign in');
-        status.textContent = 'Login successful. Redirecting...';
+        if (!response.ok) {
+          if (result.unverified && result.verificationUrl) {
+            status.innerHTML = `${result.message}<br><br><a href="${result.verificationUrl}" style="display:inline-block; padding:10px 18px; background:var(--accent); color:#ffffff; font-weight:600; text-decoration:none; border-radius:6px; margin-top:4px;">Click here to verify email now</a>`;
+            document.getElementById('resend-verification').style.display = 'block';
+            return;
+          }
+          throw new Error(result.message || 'Unable to sign in');
+        }
+        status.textContent = 'Login successful. Redirecting to home page...';
         status.classList.add('success');
-        window.location.href = '/member-dashboard.html';
+        if (result.role === 'admin') {
+          window.location.href = '/admin.html';
+        } else {
+          window.location.href = '/';
+        }
       } catch (error) {
         status.textContent = error.message;
         document.getElementById('resend-verification').style.display = error.message.includes('verify your email') ? 'block' : 'none';
@@ -73,12 +84,15 @@
     });
 
     document.getElementById('resend-verification').addEventListener('click', async () => {
-      const email = document.querySelector('input[name="email"]').value.trim();
+      const email = document.querySelector('input[name="identifier"]').value.trim();
       const status = document.getElementById('status');
       if (!email) {
         status.textContent = 'Enter your registered email first.';
         return;
       }
+
+      status.textContent = 'Processing request...';
+      status.classList.remove('success');
 
       try {
         const response = await fetch('/api/members/resend-verification', {
@@ -88,9 +102,15 @@
         });
         const result = await response.json();
         if (!response.ok) throw new Error(result.message || 'Unable to resend verification email');
-        status.textContent = result.message;
+        status.classList.add('success');
+        if (result.verificationUrl) {
+          status.innerHTML = `${result.message}<br><br><a href="${result.verificationUrl}" style="display:inline-block; padding:10px 18px; background:var(--accent); color:#ffffff; font-weight:600; text-decoration:none; border-radius:6px; margin-top:4px;">Click here to verify email now</a>`;
+        } else {
+          status.textContent = result.message;
+        }
         document.getElementById('resend-verification').style.display = 'none';
       } catch (error) {
+        status.classList.remove('success');
         status.textContent = error.message;
       }
     });

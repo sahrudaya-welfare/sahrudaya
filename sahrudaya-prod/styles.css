@@ -314,89 +314,173 @@ a {
 
 .gallery-card {
   display: grid;
-  gap: 1rem;
-  width: min(100%, 900px);
+  gap: 0.9rem;
+  width: min(100%, 920px);
   margin: 0 auto;
 }
 
 .gallery-viewer {
   width: 100%;
-  aspect-ratio: 16 / 8.5;
-  max-height: min(90vh, 500px);
-  min-height: 0;
-  border-radius: 24px;
-  background: var(--panel-strong);
+  aspect-ratio: 16 / 10;
+  max-height: min(75vh, 540px);
+  min-height: 280px;
+  border-radius: 20px;
+  background: #102a29;
   border: 1px solid var(--border);
   overflow: hidden;
   position: relative;
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
+  outline: none;
+}
+
+.gallery-viewer:focus-visible {
+  box-shadow: 0 0 0 3px rgba(24, 112, 100, 0.35);
+}
+
+.gallery-viewer.is-dragging {
+  cursor: grabbing;
 }
 
 .gallery-empty-state {
+  flex: 0 0 100%;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .gallery-track {
   display: flex;
+  width: 100%;
   height: 100%;
-  animation: gallery-flow 45s linear infinite;
   will-change: transform;
 }
 
-.gallery-paused .gallery-track {
-  animation-play-state: paused;
+.gallery-slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #102a29;
 }
 
-.gallery-viewer:hover .gallery-track {
-  animation-play-state: paused;
+.gallery-slide-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(22px) brightness(0.7);
+  transform: scale(1.12);
+  pointer-events: none;
 }
 
 .gallery-image {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  flex: 0 0 100%;
   height: 100%;
   object-fit: contain;
-  background: #dcefe9;
-  padding: 0.35rem;
   display: block;
+  pointer-events: none;
 }
 
-@keyframes gallery-flow {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.gallery-nav {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.gallery-button {
-  width: 100%;
-  padding: 0.95rem 1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.08);
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: rgba(16, 42, 41, 0.62);
   color: #fff;
+  font-size: 1.15rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.gallery-button:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.14);
-  transform: translateY(-1px);
+.gallery-arrow[hidden] {
+  display: none;
 }
 
-.gallery-button:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
+.gallery-arrow:hover {
+  background: rgba(24, 112, 100, 0.9);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.gallery-arrow-prev {
+  left: 0.85rem;
+}
+
+.gallery-arrow-next {
+  right: 0.85rem;
+}
+
+.gallery-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 0.25rem;
+}
+
+.gallery-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.gallery-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(24, 112, 100, 0.25);
+  cursor: pointer;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.gallery-dot.active {
+  width: 26px;
+  background: var(--teal);
+}
+
+.gallery-counter {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 @media (max-width: 640px) {
-  .gallery-nav {
-    grid-template-columns: 1fr 1fr;
+  .gallery-card {
+    padding: 0.85rem;
+  }
+
+  .gallery-viewer {
+    aspect-ratio: 4 / 3;
+    min-height: 240px;
+    border-radius: 16px;
+  }
+
+  .gallery-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
   }
 }
 

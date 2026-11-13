@@ -1,10 +1,13 @@
 {
   "name": "sahrudaya",
   "version": "1.0.0",
-  "description": "sahrudaya website with MongoDB contact storage",
+  "description": "SAHRUDAYA Community Organization Platform",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
