@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SAHRUDAYA - Admin Messages</title>
+  <title>SAHRUDAYA - Admin Control Center</title>
   <link rel="icon" type="image/jpeg" href="/SWAN_LOGO.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
@@ -17,11 +17,10 @@
       --accent-hover: #c85b3e;
       --danger: #c85b3e;
       --sun: #f2c14e;
+      --soft: #eef5f1;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -35,7 +34,7 @@
     input::placeholder,
     textarea::placeholder {
       color: #94a3b8;
-      opacity: 0.6;
+      opacity: 0.7;
     }
 
     .container {
@@ -47,7 +46,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
       border-bottom: 1px solid var(--border);
       padding-bottom: 1rem;
     }
@@ -60,7 +61,7 @@
     }
 
     .page-kicker {
-      margin: 0 0 0.3rem;
+      margin: 0 0 0.25rem;
       color: var(--accent);
       font-size: 0.72rem;
       font-weight: 700;
@@ -69,27 +70,43 @@
     }
 
     .page-subtitle {
-      margin: 0.35rem 0 0;
+      margin: 0.25rem 0 0;
       color: var(--muted);
       font-size: 0.88rem;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.65rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .admin-pill {
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      background: var(--soft);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 600;
     }
 
     .back-btn {
       background: var(--accent);
       color: #fff;
       border: none;
-      padding: 0.75rem 1.5rem;
+      padding: 0.65rem 1.25rem;
       border-radius: 999px;
       cursor: pointer;
+      font: inherit;
       font-weight: 600;
       text-decoration: none;
       display: inline-block;
       font-size: 0.84rem;
     }
 
-    .back-btn:hover {
-      background: var(--accent-hover);
-    }
+    .back-btn:hover { background: var(--accent-hover); }
 
     .stats {
       display: grid;
@@ -98,290 +115,302 @@
       margin-bottom: 1.25rem;
     }
 
-    .member-admin {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--accent);
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .member-admin h2,
-    .gallery-admin h2 {
-      margin: 0 0 0.75rem;
-      color: var(--text);
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-
     .stat-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.1rem 1.25rem;
-      text-align: left;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
     }
 
     .stat-card h3 {
       margin: 0;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
 
     .stat-card .number {
-      font-size: 2rem;
+      font-size: 1.9rem;
       font-weight: 700;
       color: var(--text);
-      margin-top: 0.5rem;
+      margin-top: 0.35rem;
     }
 
-    .messages-container {
-      display: grid;
-      gap: 0.85rem;
-    }
-
-    .message-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem;
-    }
-
-    .message-card h3 {
-      margin: 0 0 0.5rem;
-      color: var(--text);
-      font-size: 1rem;
-    }
-
-    .message-meta {
+    .tabs {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 0.75rem;
-      font-size: 0.9rem;
-      color: var(--muted);
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
     }
 
-    .message-meta span {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .message-content {
-      background: #eef5f1;
-      border-left: 3px solid var(--sun);
-      padding: 0.8rem;
-      border-radius: 6px;
+    .tab-btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
       color: var(--text);
-      line-height: 1.6;
+      padding: 0.6rem 1.05rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.86rem;
+      font-weight: 600;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
-    .empty-state {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: var(--muted);
+    .tab-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
     }
 
-    .empty-state h2 {
-      font-size: 1.5rem;
-      margin: 0.75rem 0 0.35rem;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 1.25rem;
-      color: var(--muted);
-    }
-
-    .gallery-admin {
+    .panel {
+      display: none;
       background: var(--surface);
       border: 1px solid var(--border);
       border-left: 3px solid var(--accent);
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 1.25rem;
       margin-bottom: 1.25rem;
     }
 
-    .upload-row {
+    .panel.active { display: block; }
+
+    .panel-header {
       display: flex;
-      flex-wrap: wrap;
+      justify-content: space-between;
       align-items: center;
-      gap: 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
     }
 
-    .upload-row button,
-    .delete-image {
+    .panel-header h2,
+    .sub-heading {
+      margin: 0;
+      color: var(--text);
+      font-size: 1.12rem;
+      font-weight: 700;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    input[type="datetime-local"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.62rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      font-size: 0.9rem;
+    }
+
+    .toolbar input[type="text"] {
+      flex: 1 1 240px;
+    }
+
+    .toolbar select {
+      width: auto;
+      min-width: 160px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .form-grid .full {
+      grid-column: 1 / -1;
+    }
+
+    .field-label {
+      display: grid;
+      gap: 0.25rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .checkbox-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .checkbox-label input {
+      width: auto;
+    }
+
+    .btn {
       background: var(--accent);
       color: #fff;
       border: 0;
       border-radius: 8px;
-      padding: 0.7rem 1rem;
+      padding: 0.6rem 1rem;
       cursor: pointer;
       font: inherit;
+      font-size: 0.85rem;
       font-weight: 600;
     }
 
-    .image-adjuster {
-      display: none;
-      grid-template-columns: minmax(280px, 620px) minmax(220px, 1fr);
-      gap: 1rem;
-      margin-top: 1rem;
-      align-items: start;
+    .btn:hover { background: var(--accent-hover); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: var(--soft);
+      color: var(--text);
+    }
+
+    .btn-danger {
+      background: transparent;
+      color: var(--danger);
+      border: 1px solid rgba(200, 91, 62, 0.45);
+    }
+
+    .btn-danger:hover {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    .btn-sm {
+      padding: 0.42rem 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .sub-box {
       padding: 1rem;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      background: rgba(0, 0, 0, 0.12);
+      border-radius: 10px;
+      background: #fafcfa;
+      margin-bottom: 1rem;
     }
 
-    .image-adjuster.active {
-      display: grid;
-    }
-
-    .adjust-preview {
-      width: 100%;
-      aspect-ratio: 16 / 8.5;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #080c18;
-    }
-
-    .adjust-preview canvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .adjust-controls {
+    .cards-list {
       display: grid;
       gap: 0.85rem;
-      padding: 0.25rem;
     }
 
-    .adjust-controls label {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0.5rem;
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .adjust-controls output {
-      justify-self: end;
-      margin: 0;
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0;
-      text-transform: none;
-    }
-
-    .adjust-controls input[type="range"] {
-      width: 100%;
-      height: 5px;
-      accent-color: var(--accent);
-      grid-column: 1 / -1;
-    }
-
-    .adjust-controls button {
-      width: 100%;
-      margin-top: 0.35rem;
-      background: var(--accent);
-      border-radius: 8px;
-      padding: 0.8rem 1rem;
-      font-weight: 700;
-    }
-
-    .adjust-controls button:hover {
-      background: var(--accent-hover);
-    }
-
-    .file-picker {
-      color: var(--muted);
-      font: inherit;
-    }
-
-    .file-picker::file-selector-button {
-      margin-right: 0.75rem;
-      padding: 0.65rem 0.9rem;
+    .item-card {
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 7px;
-      background: var(--accent);
-      color: #fff;
-      cursor: pointer;
-      font: inherit;
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .item-card h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .badges {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.74rem;
       font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--soft);
+      color: var(--accent);
     }
 
-    .image-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
+    .badge.warn {
+      background: #fef5e7;
+      border-color: rgba(242, 193, 78, 0.6);
+      color: #9a6700;
     }
 
-    .image-item img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      border-radius: 8px;
+    .badge.danger {
+      background: #fdf0ed;
+      border-color: rgba(200, 91, 62, 0.4);
+      color: #a9442b;
     }
 
-    .image-item p {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.1rem;
+      font-size: 0.86rem;
       color: var(--muted);
-      font-size: 0.85rem;
+      margin-bottom: 0.6rem;
     }
 
-    .delete-image {
-      background: var(--danger);
-      font-size: 0.85rem;
+    .content-box {
+      background: var(--soft);
+      border-left: 3px solid var(--sun);
+      padding: 0.7rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      margin-bottom: 0.7rem;
     }
 
-    .delete-member {
-      margin-top: 0.75rem;
-      border: 1px solid rgba(220, 107, 117, 0.55);
-      border-radius: 7px;
-      padding: 0.55rem 0.8rem;
-      background: transparent;
-      color: #f3a5ac;
-      cursor: pointer;
-      font: inherit;
-      font-size: 0.85rem;
-      font-weight: 600;
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
-    .delete-member:hover {
-      background: var(--danger);
-      color: #fff;
+    .inline-editor {
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
+      border-top: 1px dashed var(--border);
+    }
+
+    .status-msg {
+      margin: 0.6rem 0 0;
+      font-size: 0.86rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .status-msg.error { color: var(--danger); }
+
+    .empty-state {
+      text-align: center;
+      padding: 1.75rem 1rem;
+      color: var(--muted);
     }
 
     @media (max-width: 768px) {
-      body {
-        padding: 0.75rem;
-      }
-
-      .image-adjuster {
-        grid-template-columns: 1fr;
-      }
-
-      header {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: flex-start;
-      }
-
-      h1 {
-        font-size: 1.8rem;
-      }
+      body { padding: 0.75rem; }
+      h1 { font-size: 1.45rem; }
     }
   </style>
 </head>
@@ -390,10 +419,11 @@
     <header>
       <div>
         <p class="page-kicker">SAHRUDAYA administration</p>
-        <h1>Community operations</h1>
-        <p class="page-subtitle">Review member registrations, contact requests, and gallery content.</p>
+        <h1>Application Control Center</h1>
+        <p class="page-subtitle">Manage members, admin accounts, events, messages, and application settings.</p>
       </div>
-      <div>
+      <div class="header-actions">
+        <span class="admin-pill" id="current-admin-badge">Admin</span>
         <a href="/" class="back-btn">Back to site</a>
         <button type="button" id="logout-btn" class="back-btn">Log out</button>
       </div>
@@ -401,353 +431,652 @@
 
     <div class="stats">
       <div class="stat-card">
+        <h3>Registered members</h3>
+        <div class="number" id="member-count">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Events</h3>
+        <div class="number" id="event-count">0</div>
+      </div>
+      <div class="stat-card">
         <h3>Contact messages</h3>
         <div class="number" id="total-count">0</div>
       </div>
       <div class="stat-card">
-        <h3>Registered members</h3>
-        <div class="number" id="member-count">0</div>
+        <h3>Admin users</h3>
+        <div class="number" id="admin-count">0</div>
       </div>
     </div>
 
-    <section class="member-admin">
-      <h2>Member Registrations</h2>
-      <div id="member-loading" class="loading">
-        <p>Loading members...</p>
-      </div>
-      <div id="member-list" class="messages-container" style="display: none;"></div>
-      <div id="member-empty" class="empty-state" style="display: none;">
-        <p>No member registrations yet.</p>
-      </div>
-    </section>
+    <nav class="tabs" role="tablist">
+      <button type="button" class="tab-btn active" data-tab="members">Users &amp; Members</button>
+      <button type="button" class="tab-btn" data-tab="events">Events</button>
+      <button type="button" class="tab-btn" data-tab="messages">Contact Messages</button>
+      <button type="button" class="tab-btn" data-tab="settings">App Settings</button>
+      <button type="button" class="tab-btn" data-tab="admins">Admin Accounts</button>
+    </nav>
 
-    <section class="member-admin">
-      <h2>Publish New Event</h2>
-      <form id="event-form" class="upload-row">
-        <input type="text" name="title" placeholder="Event title" required />
-        <input type="datetime-local" name="eventDate" required />
-        <input type="text" name="location" placeholder="Location" required />
-        <textarea name="description" placeholder="Event description" rows="3" required></textarea>
-        <button type="submit">Publish and email members</button>
-      </form>
-      <p id="event-status" class="message-meta"></p>
-    </section>
+    <section class="panel active" id="panel-members">
+      <div class="panel-header">
+        <h2>Users &amp; Member Management</h2>
+        <button type="button" class="btn" id="toggle-add-member">+ Add Member</button>
+      </div>
 
-    <section class="gallery-admin">
-      <h2>Gallery Images</h2>
-      <form id="upload-form" class="upload-row">
-        <input class="file-picker" type="file" id="image-file" accept="image/jpeg,image/png,image/webp,image/gif" required />
-      </form>
-      <div id="image-adjuster" class="image-adjuster">
-        <div class="adjust-preview">
-          <canvas id="adjust-canvas" width="1200" height="638"></canvas>
+      <form id="add-member-form" class="sub-box" style="display: none;">
+        <div class="form-grid">
+          <label class="field-label">Full Name<input type="text" name="name" required /></label>
+          <label class="field-label">Email<input type="email" name="email" required /></label>
+          <label class="field-label">Phone<input type="tel" name="phone" required /></label>
+          <label class="field-label">City<input type="text" name="city" required /></label>
+          <label class="field-label">Area of Interest
+            <select name="interest" required>
+              <option value="Education">Education</option>
+              <option value="Community Service">Community Service</option>
+              <option value="Leadership">Leadership</option>
+              <option value="Health and Wellness">Health and Wellness</option>
+              <option value="Volunteer Programs">Volunteer Programs</option>
+            </select>
+          </label>
+          <label class="field-label">Initial Password<input type="password" name="password" minlength="6" required /></label>
         </div>
-        <div class="adjust-controls">
-          <label>Crop scale <output id="zoom-value">100%</output><input type="range" id="image-zoom" min="1" max="3" step="0.01" value="1" /></label>
-          <label>Focus left to right <output id="position-x-value">50%</output><input type="range" id="image-position-x" min="0" max="100" step="1" value="50" /></label>
-          <label>Focus top to bottom <output id="position-y-value">50%</output><input type="range" id="image-position-y" min="0" max="100" step="1" value="50" /></label>
-          <button type="submit" form="upload-form">Apply and upload</button>
+        <label class="checkbox-label"><input type="checkbox" name="is_verified" checked /> Mark email as verified immediately</label>
+        <div style="margin-top: 0.75rem;">
+          <button type="submit" class="btn">Create Member</button>
         </div>
+        <p id="add-member-status" class="status-msg"></p>
+      </form>
+
+      <div class="toolbar">
+        <input type="text" id="member-search" placeholder="Search members by name, email, or city..." />
+        <select id="member-filter">
+          <option value="all">All members</option>
+          <option value="verified">Verified only</option>
+          <option value="unverified">Unverified only</option>
+          <option value="disabled">Disabled only</option>
+        </select>
       </div>
-      <p id="upload-status" class="message-meta"></p>
-      <div id="image-list" class="image-list"></div>
+
+      <div id="member-list" class="cards-list"></div>
+      <div id="member-empty" class="empty-state" style="display: none;">No matching members found.</div>
     </section>
 
-    <div id="loading" class="loading">
-      <p>Loading messages...</p>
-    </div>
+    <section class="panel" id="panel-events">
+      <div class="panel-header">
+        <h2>Events Management</h2>
+      </div>
+      <form id="event-form" class="sub-box">
+        <div class="form-grid">
+          <label class="field-label">Event Title<input type="text" name="title" placeholder="Event title" required /></label>
+          <label class="field-label">Date &amp; Time<input type="datetime-local" name="eventDate" required /></label>
+          <label class="field-label">Location<input type="text" name="location" placeholder="Location" required /></label>
+          <label class="field-label full">Description<textarea name="description" placeholder="Event description" rows="3" required></textarea></label>
+        </div>
+        <button type="submit" class="btn">Publish and email active members</button>
+        <p id="event-status" class="status-msg"></p>
+      </form>
 
-    <div id="messages" class="messages-container" style="display: none;"></div>
+      <div id="event-list" class="cards-list"></div>
+      <div id="event-empty" class="empty-state" style="display: none;">No events created yet.</div>
+    </section>
 
-    <div id="empty" class="empty-state" style="display: none;">
-      <p>No contact messages yet.</p>
-    </div>
+    <section class="panel" id="panel-messages">
+      <div class="panel-header">
+        <h2>Contact Messages</h2>
+      </div>
+      <div id="messages" class="cards-list"></div>
+      <div id="empty" class="empty-state" style="display: none;">No contact messages yet.</div>
+    </section>
+
+    <section class="panel" id="panel-settings">
+      <div class="panel-header">
+        <h2>Application Settings</h2>
+      </div>
+      <form id="settings-form" class="sub-box">
+        <div class="form-grid">
+          <label class="field-label">Hero Statement<input type="text" name="hero_statement" required /></label>
+          <label class="field-label">Header Tagline<input type="text" name="site_tagline" required /></label>
+          <label class="field-label">Primary Contact Email<input type="email" name="contact_email_primary" required /></label>
+          <label class="field-label">Secondary Contact Email<input type="email" name="contact_email_secondary" required /></label>
+          <label class="field-label">Contact Phone<input type="text" name="contact_phone" required /></label>
+          <label class="field-label">Location<input type="text" name="contact_location" required /></label>
+        </div>
+        <label class="checkbox-label">
+          <input type="checkbox" name="registrations_enabled" checked />
+          Allow new public member registrations
+        </label>
+        <div style="margin-top: 0.85rem;">
+          <button type="submit" class="btn">Save Application Settings</button>
+        </div>
+        <p id="settings-status" class="status-msg"></p>
+      </form>
+    </section>
+
+    <section class="panel" id="panel-admins">
+      <div class="panel-header">
+        <h2>Backend Admin Accounts</h2>
+      </div>
+
+      <form id="add-admin-form" class="sub-box">
+        <h3 class="sub-heading" style="margin-bottom: 0.65rem;">Create Admin User</h3>
+        <div class="form-grid">
+          <label class="field-label">Display Name<input type="text" name="name" placeholder="Full Name" required /></label>
+          <label class="field-label">Username<input type="text" name="username" placeholder="username" required /></label>
+          <label class="field-label">Email<input type="email" name="email" placeholder="admin@sahrudaya-wa.org" required /></label>
+          <label class="field-label">Password<input type="password" name="password" minlength="6" required /></label>
+        </div>
+        <button type="submit" class="btn">Create Admin User</button>
+        <p id="add-admin-status" class="status-msg"></p>
+      </form>
+
+      <div id="admin-list" class="cards-list" style="margin-bottom: 1.25rem;"></div>
+
+      <form id="change-password-form" class="sub-box">
+        <h3 class="sub-heading" style="margin-bottom: 0.65rem;">Change My Password</h3>
+        <div class="form-grid">
+          <label class="field-label">Current Password<input type="password" name="currentPassword" required /></label>
+          <label class="field-label">New Password<input type="password" name="newPassword" minlength="6" required /></label>
+        </div>
+        <button type="submit" class="btn">Update Password</button>
+        <p id="password-status" class="status-msg"></p>
+      </form>
+    </section>
   </div>
 
   <script>
-    async function loadMessages() {
-      try {
-        const response = await fetch('/api/contacts');
-        if (response.status === 401) {
-          window.location.href = '/admin-login.html';
-          return;
-        }
-        const messages = await response.json();
-
-        const loadingEl = document.getElementById('loading');
-        const messagesEl = document.getElementById('messages');
-        const emptyEl = document.getElementById('empty');
-        const totalEl = document.getElementById('total-count');
-
-        loadingEl.style.display = 'none';
-
-        if (messages.length === 0) {
-          emptyEl.style.display = 'block';
-          totalEl.textContent = '0';
-          return;
-        }
-
-        totalEl.textContent = messages.length;
-        messagesEl.style.display = 'grid';
-
-        messagesEl.innerHTML = messages
-          .map((msg) => {
-            const date = new Date(msg.created_at);
-            const formattedDate = date.toLocaleDateString();
-            const formattedTime = date.toLocaleTimeString();
-
-            return `
-              <div class="message-card">
-                <h3>${escapeHtml(msg.name)}</h3>
-                <div class="message-meta">
-                  <span>📧 ${escapeHtml(msg.email)}</span>
-                  <span>📅 ${formattedDate}</span>
-                  <span>🕐 ${formattedTime}</span>
-                </div>
-                <div class="message-content">
-                  ${escapeHtml(msg.message).replace(/\n/g, '<br>')}
-                </div>
-              </div>
-            `;
-          })
-          .join('');
-      } catch (error) {
-        console.error('Error loading messages:', error);
-        document.getElementById('loading').innerHTML = '<p>❌ Error loading messages</p>';
-      }
-    }
-
-    async function loadMembers() {
-      try {
-        const response = await fetch('/api/members');
-        if (response.status === 401) {
-          window.location.href = '/admin-login.html';
-          return;
-        }
-
-        const members = await response.json();
-        const loadingEl = document.getElementById('member-loading');
-        const listEl = document.getElementById('member-list');
-        const emptyEl = document.getElementById('member-empty');
-        const totalEl = document.getElementById('member-count');
-
-        loadingEl.style.display = 'none';
-
-        if (members.length === 0) {
-          emptyEl.style.display = 'block';
-          totalEl.textContent = '0';
-          return;
-        }
-
-        totalEl.textContent = members.length;
-        listEl.style.display = 'grid';
-
-        listEl.innerHTML = members
-          .map((member) => {
-            const date = new Date(member.created_at);
-            const formattedDate = date.toLocaleDateString();
-            const formattedTime = date.toLocaleTimeString();
-
-            return `
-              <div class="message-card">
-                <h3>${escapeHtml(member.name)}</h3>
-                <div class="message-meta">
-                  <span>📧 ${escapeHtml(member.email)}</span>
-                  <span>📞 ${escapeHtml(member.phone)}</span>
-                  <span>📍 ${escapeHtml(member.city)}</span>
-                  <span>📅 ${formattedDate}</span>
-                  <span>🕐 ${formattedTime}</span>
-                </div>
-                <div class="message-content">
-                  <strong>Interest:</strong> ${escapeHtml(member.interest)}
-                </div>
-                <button type="button" class="delete-member" data-id="${member.id}">Delete member</button>
-              </div>
-            `;
-          })
-          .join('');
-      } catch (error) {
-        console.error('Error loading members:', error);
-        document.getElementById('member-loading').innerHTML = '<p>❌ Error loading members</p>';
-      }
-    }
+    let currentAdmin = null;
+    let allMembers = [];
+    let allEvents = [];
+    let allMessages = [];
+    let allAdmins = [];
 
     function escapeHtml(text) {
       const div = document.createElement('div');
-      div.textContent = text;
+      div.textContent = text == null ? '' : String(text);
       return div.innerHTML;
     }
 
-    async function loadImages() {
-      const response = await fetch('/api/images');
+    async function apiFetch(url, options = {}) {
+      const response = await fetch(url, options);
       if (response.status === 401) {
         window.location.href = '/admin-login.html';
-        return;
+        return null;
       }
-      const images = await response.json();
-      document.getElementById('image-list').innerHTML = images.map((image) => `
-        <div class="image-item">
-          <img src="${image.url}" alt="${escapeHtml(image.filename)}" />
-          <p title="${escapeHtml(image.filename)}">${escapeHtml(image.filename)}</p>
-          <button type="button" class="delete-image" data-id="${image.id}">Delete</button>
-        </div>
-      `).join('');
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(data.message || 'Request failed');
+      }
+      return data;
     }
 
-    document.getElementById('upload-form').addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const fileInput = document.getElementById('image-file');
-      const status = document.getElementById('upload-status');
-      const canvas = document.getElementById('adjust-canvas');
-      if (!fileInput.files.length) {
-        status.textContent = 'Choose an image first.';
+    document.querySelectorAll('.tab-btn').forEach((button) => {
+      button.addEventListener('click', () => {
+        const target = button.dataset.tab;
+        document.querySelectorAll('.tab-btn').forEach((btn) => btn.classList.toggle('active', btn === button));
+        document.querySelectorAll('.panel').forEach((panel) => panel.classList.toggle('active', panel.id === `panel-${target}`));
+      });
+    });
+
+    async function loadCurrentAdmin() {
+      const admin = await apiFetch('/api/admin/me');
+      if (!admin) return;
+      currentAdmin = admin;
+      document.getElementById('current-admin-badge').textContent = `${admin.name || admin.username} (${admin.username})`;
+    }
+
+    function renderMembers() {
+      const query = document.getElementById('member-search').value.trim().toLowerCase();
+      const filter = document.getElementById('member-filter').value;
+      const listEl = document.getElementById('member-list');
+      const emptyEl = document.getElementById('member-empty');
+
+      const filtered = allMembers.filter((member) => {
+        const matchesQuery = !query || [member.name, member.email, member.city, member.interest]
+          .some((field) => String(field || '').toLowerCase().includes(query));
+        if (!matchesQuery) return false;
+        if (filter === 'verified') return member.is_verified && member.is_active !== false;
+        if (filter === 'unverified') return !member.is_verified;
+        if (filter === 'disabled') return member.is_active === false;
+        return true;
+      });
+
+      document.getElementById('member-count').textContent = allMembers.length;
+
+      if (!filtered.length) {
+        listEl.innerHTML = '';
+        emptyEl.style.display = 'block';
         return;
       }
-      const formData = new FormData();
-      const adjustedImage = await new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.92));
-      formData.append('image', adjustedImage, `${fileInput.files[0].name.replace(/\.[^.]+$/, '')}-adjusted.jpg`);
-      status.textContent = 'Uploading...';
-      try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 30000);
-        const response = await fetch('/api/images', { method: 'POST', body: formData, signal: controller.signal });
-        clearTimeout(timeout);
-        const result = await response.json();
-        if (response.status === 401) {
-          window.location.href = '/admin-login.html';
-          return;
-        }
-        status.textContent = result.message || (response.ok ? 'Image uploaded.' : 'Upload failed.');
-        if (response.ok) {
-          fileInput.value = '';
-          document.getElementById('image-adjuster').classList.remove('active');
-          loadImages();
-        }
-      } catch (error) {
-        status.textContent = error.name === 'AbortError'
-          ? 'Upload timed out. Check the server and database connection.'
-          : 'Upload failed. Check the server console.';
+
+      emptyEl.style.display = 'none';
+      listEl.innerHTML = filtered.map((member) => {
+        const date = new Date(member.created_at).toLocaleDateString();
+        const isActive = member.is_active !== false;
+        return `
+          <div class="item-card" data-member-id="${member.id}">
+            <div class="item-top">
+              <h3>${escapeHtml(member.name)}</h3>
+              <div class="badges">
+                <span class="badge ${member.is_verified ? '' : 'warn'}">${member.is_verified ? 'Verified' : 'Pending verification'}</span>
+                <span class="badge ${isActive ? '' : 'danger'}">${isActive ? 'Active' : 'Disabled'}</span>
+              </div>
+            </div>
+            <div class="meta-row">
+              <span>📧 ${escapeHtml(member.email)}</span>
+              <span>📞 ${escapeHtml(member.phone)}</span>
+              <span>📍 ${escapeHtml(member.city)}</span>
+              <span>🎯 ${escapeHtml(member.interest)}</span>
+              <span>📅 ${escapeHtml(date)}</span>
+            </div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-outline btn-sm toggle-edit-member" data-id="${member.id}">Edit</button>
+              <button type="button" class="btn btn-outline btn-sm toggle-verify-member" data-id="${member.id}" data-next="${!member.is_verified}">${member.is_verified ? 'Unverify' : 'Verify'}</button>
+              <button type="button" class="btn btn-outline btn-sm toggle-active-member" data-id="${member.id}" data-next="${!isActive}">${isActive ? 'Disable' : 'Enable'}</button>
+              <button type="button" class="btn btn-danger btn-sm delete-member" data-id="${member.id}">Delete</button>
+            </div>
+            <form class="inline-editor edit-member-form" data-id="${member.id}" style="display: none;">
+              <div class="form-grid">
+                <label class="field-label">Name<input type="text" name="name" value="${escapeHtml(member.name)}" required /></label>
+                <label class="field-label">Email<input type="email" name="email" value="${escapeHtml(member.email)}" required /></label>
+                <label class="field-label">Phone<input type="tel" name="phone" value="${escapeHtml(member.phone)}" required /></label>
+                <label class="field-label">City<input type="text" name="city" value="${escapeHtml(member.city)}" required /></label>
+                <label class="field-label">Interest<input type="text" name="interest" value="${escapeHtml(member.interest)}" required /></label>
+                <label class="field-label">New Password (optional)<input type="password" name="password" minlength="6" placeholder="Leave blank to keep" /></label>
+              </div>
+              <button type="submit" class="btn btn-sm">Save Changes</button>
+            </form>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function loadMembers() {
+      const members = await apiFetch('/api/members');
+      if (!members) return;
+      allMembers = members;
+      renderMembers();
+    }
+
+    function renderEvents() {
+      const listEl = document.getElementById('event-list');
+      const emptyEl = document.getElementById('event-empty');
+      document.getElementById('event-count').textContent = allEvents.length;
+
+      if (!allEvents.length) {
+        listEl.innerHTML = '';
+        emptyEl.style.display = 'block';
+        return;
       }
+
+      emptyEl.style.display = 'none';
+      listEl.innerHTML = allEvents.map((ev) => {
+        const localDateValue = ev.event_date ? new Date(ev.event_date).toISOString().slice(0, 16) : '';
+        return `
+          <div class="item-card">
+            <div class="item-top">
+              <h3>${escapeHtml(ev.title)}</h3>
+              <span class="badge">${escapeHtml(new Date(ev.event_date).toLocaleString())}</span>
+            </div>
+            <div class="meta-row">
+              <span>📍 ${escapeHtml(ev.location)}</span>
+            </div>
+            <div class="content-box">${escapeHtml(ev.description)}</div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-outline btn-sm toggle-edit-event">Edit</button>
+              <button type="button" class="btn btn-danger btn-sm delete-event" data-id="${ev.id}">Delete</button>
+            </div>
+            <form class="inline-editor edit-event-form" data-id="${ev.id}" style="display: none;">
+              <div class="form-grid">
+                <label class="field-label">Title<input type="text" name="title" value="${escapeHtml(ev.title)}" required /></label>
+                <label class="field-label">Date &amp; Time<input type="datetime-local" name="eventDate" value="${escapeHtml(localDateValue)}" required /></label>
+                <label class="field-label">Location<input type="text" name="location" value="${escapeHtml(ev.location)}" required /></label>
+                <label class="field-label full">Description<textarea name="description" rows="2" required>${escapeHtml(ev.description)}</textarea></label>
+              </div>
+              <button type="submit" class="btn btn-sm">Update Event</button>
+            </form>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function loadEvents() {
+      const events = await apiFetch('/api/admin/events');
+      if (!events) return;
+      allEvents = events;
+      renderEvents();
+    }
+
+    function renderMessages() {
+      const messagesEl = document.getElementById('messages');
+      const emptyEl = document.getElementById('empty');
+      document.getElementById('total-count').textContent = allMessages.length;
+
+      if (!allMessages.length) {
+        messagesEl.innerHTML = '';
+        emptyEl.style.display = 'block';
+        return;
+      }
+
+      emptyEl.style.display = 'none';
+      messagesEl.innerHTML = allMessages.map((msg) => {
+        const date = new Date(msg.created_at);
+        return `
+          <div class="item-card">
+            <div class="item-top">
+              <h3>${escapeHtml(msg.name)}</h3>
+              <button type="button" class="btn btn-danger btn-sm delete-message" data-id="${msg.id}">Delete</button>
+            </div>
+            <div class="meta-row">
+              <span>📧 ${escapeHtml(msg.email)}</span>
+              <span>📅 ${escapeHtml(date.toLocaleDateString())}</span>
+              <span>🕐 ${escapeHtml(date.toLocaleTimeString())}</span>
+            </div>
+            <div class="content-box">${escapeHtml(msg.message).replace(/\n/g, '<br>')}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function loadMessages() {
+      const messages = await apiFetch('/api/contacts');
+      if (!messages) return;
+      allMessages = messages;
+      renderMessages();
+    }
+
+    async function loadSettings() {
+      const settings = await apiFetch('/api/settings');
+      if (!settings) return;
+      const form = document.getElementById('settings-form');
+      form.hero_statement.value = settings.hero_statement || '';
+      form.site_tagline.value = settings.site_tagline || '';
+      form.contact_email_primary.value = settings.contact_email_primary || '';
+      form.contact_email_secondary.value = settings.contact_email_secondary || '';
+      form.contact_phone.value = settings.contact_phone || '';
+      form.contact_location.value = settings.contact_location || '';
+      form.registrations_enabled.checked = settings.registrations_enabled !== 'false';
+    }
+
+    function renderAdmins() {
+      const listEl = document.getElementById('admin-list');
+      document.getElementById('admin-count').textContent = allAdmins.length;
+      listEl.innerHTML = allAdmins.map((admin) => {
+        const isSelf = currentAdmin && currentAdmin.id === admin.id;
+        const isPermanent = admin.is_permanent || (admin.username && admin.username.toLowerCase() === 'sahrudaya.wa@gmail.com') || (admin.email && admin.email.toLowerCase() === 'sahrudaya.wa@gmail.com');
+        return `
+          <div class="item-card">
+            <div class="item-top">
+              <h3>${escapeHtml(admin.name)} <small style="color: var(--muted); font-weight: 500;">(@${escapeHtml(admin.username)})</small></h3>
+              <div class="badges">
+                ${isPermanent ? '<span class="badge" style="background:#fef3c7; color:#92400e; border-color:#f59e0b;">Permanent Super Admin</span>' : ''}
+                ${isSelf ? '<span class="badge">You</span>' : ''}
+                <span class="badge ${admin.is_active ? '' : 'danger'}">${admin.is_active ? 'Active' : 'Disabled'}</span>
+              </div>
+            </div>
+            <div class="meta-row">
+              <span>📧 ${escapeHtml(admin.email)}</span>
+              <span>📅 Created ${escapeHtml(new Date(admin.created_at).toLocaleDateString())}</span>
+            </div>
+            ${isSelf || isPermanent ? '' : `
+              <div class="card-actions">
+                <button type="button" class="btn btn-outline btn-sm toggle-admin-active" data-id="${admin.id}" data-next="${!admin.is_active}">${admin.is_active ? 'Disable' : 'Enable'}</button>
+                <button type="button" class="btn btn-danger btn-sm delete-admin" data-id="${admin.id}">Delete</button>
+              </div>
+            `}
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function loadAdmins() {
+      const admins = await apiFetch('/api/admins');
+      if (!admins) return;
+      allAdmins = admins;
+      renderAdmins();
+    }
+
+    document.getElementById('toggle-add-member').addEventListener('click', () => {
+      const form = document.getElementById('add-member-form');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    });
+
+    document.getElementById('member-search').addEventListener('input', renderMembers);
+    document.getElementById('member-filter').addEventListener('change', renderMembers);
+
+    document.getElementById('add-member-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const status = document.getElementById('add-member-status');
+      const form = event.currentTarget;
+      status.classList.remove('error');
+      status.textContent = 'Creating member...';
+      try {
+        await apiFetch('/api/members', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: form.name.value,
+            email: form.email.value,
+            phone: form.phone.value,
+            city: form.city.value,
+            interest: form.interest.value,
+            password: form.password.value,
+            is_verified: form.is_verified.checked,
+          }),
+        });
+        form.reset();
+        status.textContent = 'Member created successfully.';
+        loadMembers();
+      } catch (error) {
+        status.classList.add('error');
+        status.textContent = error.message;
+      }
+    });
+
+    document.getElementById('member-list').addEventListener('click', async (event) => {
+      const target = event.target;
+      const card = target.closest('.item-card');
+      if (!card) return;
+
+      if (target.matches('.toggle-edit-member')) {
+        const editor = card.querySelector('.edit-member-form');
+        editor.style.display = editor.style.display === 'none' ? 'block' : 'none';
+      } else if (target.matches('.toggle-verify-member')) {
+        await apiFetch(`/api/members/${target.dataset.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ is_verified: target.dataset.next === 'true' }),
+        });
+        loadMembers();
+      } else if (target.matches('.toggle-active-member')) {
+        await apiFetch(`/api/members/${target.dataset.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ is_active: target.dataset.next === 'true' }),
+        });
+        loadMembers();
+      } else if (target.matches('.delete-member')) {
+        if (!window.confirm('Delete this member permanently?')) return;
+        await apiFetch(`/api/members/${target.dataset.id}`, { method: 'DELETE' });
+        loadMembers();
+      }
+    });
+
+    document.getElementById('member-list').addEventListener('submit', async (event) => {
+      if (!event.target.matches('.edit-member-form')) return;
+      event.preventDefault();
+      const form = event.target;
+      const payload = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        city: form.city.value,
+        interest: form.interest.value,
+      };
+      if (form.password.value.trim()) payload.password = form.password.value.trim();
+      await apiFetch(`/api/members/${form.dataset.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      loadMembers();
     });
 
     document.getElementById('event-form').addEventListener('submit', async (event) => {
       event.preventDefault();
+      const formEl = event.currentTarget;
       const status = document.getElementById('event-status');
-      const formData = new FormData(event.currentTarget);
+      const formData = new FormData(formEl);
+      status.classList.remove('error');
       status.textContent = 'Publishing event...';
-
       try {
-        const response = await fetch('/api/events', {
+        const result = await apiFetch('/api/events', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(Object.fromEntries(formData.entries()))
+          body: JSON.stringify(Object.fromEntries(formData.entries())),
         });
-        const result = await response.json();
-        if (response.status === 401) {
-          window.location.href = '/admin-login.html';
-          return;
-        }
-        if (!response.ok) throw new Error(result.message || 'Unable to publish event.');
+        if (!result) return;
         status.textContent = `Event published. Notifications sent to ${result.notifiedMembers} member(s).`;
-        event.currentTarget.reset();
+        formEl.reset();
+        loadEvents();
       } catch (error) {
-        status.textContent = error.message || 'Unable to publish event.';
+        status.classList.add('error');
+        status.textContent = error.message;
       }
     });
 
-    const imageFile = document.getElementById('image-file');
-    const adjuster = document.getElementById('image-adjuster');
-    const canvas = document.getElementById('adjust-canvas');
-    const context = canvas.getContext('2d');
-    const zoomControl = document.getElementById('image-zoom');
-    const positionXControl = document.getElementById('image-position-x');
-    const positionYControl = document.getElementById('image-position-y');
-    const zoomValue = document.getElementById('zoom-value');
-    const positionXValue = document.getElementById('position-x-value');
-    const positionYValue = document.getElementById('position-y-value');
-    let sourceImage = null;
+    document.getElementById('event-list').addEventListener('click', async (event) => {
+      const target = event.target;
+      const card = target.closest('.item-card');
+      if (!card) return;
 
-    function drawAdjustedImage() {
-      if (!sourceImage) return;
-
-      zoomValue.textContent = `${Math.round(Number(zoomControl.value) * 100)}%`;
-      positionXValue.textContent = `${positionXControl.value}%`;
-      positionYValue.textContent = `${positionYControl.value}%`;
-
-      const canvasRatio = canvas.width / canvas.height;
-      const sourceRatio = sourceImage.naturalWidth / sourceImage.naturalHeight;
-      let cropWidth;
-      let cropHeight;
-
-      if (sourceRatio > canvasRatio) {
-        cropHeight = sourceImage.naturalHeight / Number(zoomControl.value);
-        cropWidth = cropHeight * canvasRatio;
-      } else {
-        cropWidth = sourceImage.naturalWidth / Number(zoomControl.value);
-        cropHeight = cropWidth / canvasRatio;
+      if (target.matches('.toggle-edit-event')) {
+        const editor = card.querySelector('.edit-event-form');
+        editor.style.display = editor.style.display === 'none' ? 'block' : 'none';
+      } else if (target.matches('.delete-event')) {
+        if (!window.confirm('Delete this event?')) return;
+        await apiFetch(`/api/events/${target.dataset.id}`, { method: 'DELETE' });
+        loadEvents();
       }
-
-      const maxX = sourceImage.naturalWidth - cropWidth;
-      const maxY = sourceImage.naturalHeight - cropHeight;
-      const cropX = maxX * Number(positionXControl.value) / 100;
-      const cropY = maxY * Number(positionYControl.value) / 100;
-
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(sourceImage, cropX, cropY, cropWidth, cropHeight, 0, 0, canvas.width, canvas.height);
-    }
-
-    imageFile.addEventListener('change', () => {
-      const file = imageFile.files[0];
-      if (!file) return;
-
-      const objectUrl = URL.createObjectURL(file);
-      sourceImage = new Image();
-      sourceImage.onload = () => {
-        URL.revokeObjectURL(objectUrl);
-        adjuster.classList.add('active');
-        drawAdjustedImage();
-      };
-      sourceImage.src = objectUrl;
     });
 
-    [zoomControl, positionXControl, positionYControl].forEach((control) => {
-      control.addEventListener('input', drawAdjustedImage);
+    document.getElementById('event-list').addEventListener('submit', async (event) => {
+      if (!event.target.matches('.edit-event-form')) return;
+      event.preventDefault();
+      const form = event.target;
+      await apiFetch(`/api/events/${form.dataset.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form).entries())),
+      });
+      loadEvents();
     });
 
-    document.getElementById('image-list').addEventListener('click', async (event) => {
-      if (!event.target.matches('.delete-image')) return;
-      await fetch(`/api/images/${event.target.dataset.id}`, { method: 'DELETE' });
-      loadImages();
+    document.getElementById('messages').addEventListener('click', async (event) => {
+      if (!event.target.matches('.delete-message')) return;
+      if (!window.confirm('Delete this contact message?')) return;
+      await apiFetch(`/api/contacts/${event.target.dataset.id}`, { method: 'DELETE' });
+      loadMessages();
     });
 
-    document.getElementById('member-list').addEventListener('click', async (event) => {
-      if (!event.target.matches('.delete-member')) return;
-      if (!window.confirm('Delete this member registration? This cannot be undone.')) return;
+    document.getElementById('settings-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const status = document.getElementById('settings-status');
+      status.classList.remove('error');
+      status.textContent = 'Saving settings...';
+      try {
+        await apiFetch('/api/admin/settings', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            hero_statement: form.hero_statement.value,
+            site_tagline: form.site_tagline.value,
+            contact_email_primary: form.contact_email_primary.value,
+            contact_email_secondary: form.contact_email_secondary.value,
+            contact_phone: form.contact_phone.value,
+            contact_location: form.contact_location.value,
+            registrations_enabled: form.registrations_enabled.checked ? 'true' : 'false',
+          }),
+        });
+        status.textContent = 'Application settings saved.';
+      } catch (error) {
+        status.classList.add('error');
+        status.textContent = error.message;
+      }
+    });
 
-      const response = await fetch(`/api/members/${event.target.dataset.id}`, { method: 'DELETE' });
-      if (response.status === 401) {
-        window.location.href = '/admin-login.html';
-        return;
+    document.getElementById('add-admin-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const status = document.getElementById('add-admin-status');
+      status.classList.remove('error');
+      status.textContent = 'Creating admin user...';
+      try {
+        await apiFetch('/api/admins', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form).entries())),
+        });
+        form.reset();
+        status.textContent = 'Admin user created.';
+        loadAdmins();
+      } catch (error) {
+        status.classList.add('error');
+        status.textContent = error.message;
       }
-      if (!response.ok) {
-        document.getElementById('member-loading').innerHTML = '<p>Unable to delete member.</p>';
-        return;
+    });
+
+    document.getElementById('admin-list').addEventListener('click', async (event) => {
+      const target = event.target;
+      if (target.matches('.toggle-admin-active')) {
+        await apiFetch(`/api/admins/${target.dataset.id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ is_active: target.dataset.next === 'true' }),
+        });
+        loadAdmins();
+      } else if (target.matches('.delete-admin')) {
+        if (!window.confirm('Delete this admin account?')) return;
+        await apiFetch(`/api/admins/${target.dataset.id}`, { method: 'DELETE' });
+        loadAdmins();
       }
-      loadMembers();
+    });
+
+    document.getElementById('change-password-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const status = document.getElementById('password-status');
+      status.classList.remove('error');
+      status.textContent = 'Updating password...';
+      try {
+        const result = await apiFetch('/api/admin/password', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form).entries())),
+        });
+        if (!result) return;
+        form.reset();
+        status.textContent = result.message || 'Password updated.';
+      } catch (error) {
+        status.classList.add('error');
+        status.textContent = error.message;
+      }
     });
 
     document.getElementById('logout-btn').addEventListener('click', async () => {
       await fetch('/api/admin/logout', { method: 'POST' });
-      window.location.href = '/admin-login.html';
+      window.location.href = '/member-login.html';
     });
 
-    window.addEventListener('pagehide', () => {
-      navigator.sendBeacon('/api/admin/logout', new Blob([], { type: 'application/json' }));
-    });
-
-    loadMessages();
-    loadMembers();
-    loadImages();
+    (async function initAdminDashboard() {
+      await loadCurrentAdmin();
+      await Promise.all([
+        loadMembers(),
+        loadEvents(),
+        loadMessages(),
+        loadSettings(),
+        loadAdmins(),
+      ]);
+    })();
   </script>
 </body>
 </html>
