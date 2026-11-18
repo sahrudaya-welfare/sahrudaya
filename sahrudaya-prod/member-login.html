@@ -3,51 +3,258 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Member Login | SAHRUDAYA</title>
+  <title>Member Sign In | SAHRUDAYA</title>
   <link rel="icon" type="image/jpeg" href="/SWAN_LOGO.jpg" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root { --bg: #f5f7f2; --panel: #ffffff; --border: rgba(24,112,100,.18); --text: #183b3a; --muted: #58716f; --accent: #187064; --accent-hover: #c85b3e; --success: #187064; }
+    :root {
+      --ink: #244b3c;
+      --deep: #17392e;
+      --leaf: #2b5d49;
+      --cream: #e69e18;
+      --gold: #c38f45;
+      --panel: #ffffff;
+      --line: #e8ddcf;
+      --muted: #66756d;
+      --muted-dark: #5f6d67;
+      --soft-shadow: 0 18px 40px rgba(71, 58, 36, 0.12);
+      --focus-ring: 0 0 0 3px rgba(43, 93, 73, 0.15);
+    }
     * { box-sizing: border-box; }
-    body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 1rem; background: radial-gradient(circle at top left, rgba(242,193,78,.22), transparent 30%), linear-gradient(180deg, #fbfcf7 0%, var(--bg) 100%); color: var(--text); font-family: 'Poppins', sans-serif; }
-    .login-card { width: min(100%, 440px); padding: 1.75rem; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 18px 48px rgba(24,59,58,.12); }
-    h1 { margin: 0 0 .35rem; font-size: 1.55rem; }
-    .intro { margin: 0 0 1.25rem; color: var(--muted); }
-    label { display: block; margin-top: .8rem; color: var(--muted); font-size: .9rem; }
-    input { width: 100%; margin-top: .35rem; padding: .7rem .8rem; border: 1px solid var(--border); border-radius: 6px; background: #fff; color: var(--text); font: inherit; }
-    input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-    button { width: 100%; margin-top: 1.1rem; padding: .75rem 1rem; border: 0; border-radius: 6px; background: var(--accent); color: white; cursor: pointer; font: inherit; font-weight: 600; }
-    button:hover { background: var(--accent-hover); }
-    .status { min-height: 1.35rem; margin: .7rem 0 0; color: #b54343; font-size: .88rem; }
-    .status.success { color: var(--success); }
-    .links { display: flex; justify-content: space-between; gap: 1rem; margin-top: .85rem; font-size: .86rem; }
-    .links a, .register-prompt a { color: var(--accent); text-decoration: none; }
-    .register-prompt { display: flex; flex-wrap: wrap; justify-content: center; gap: .25rem .4rem; margin-top: .85rem; padding: .7rem; border: 1px solid var(--border); border-radius: 6px; font-size: .88rem; }
-    .register-prompt span { color: var(--muted); }
-    .resend-verification { margin-top: .5rem; background: transparent; border: 1px solid var(--border); color: var(--accent); }
-    .resend-verification:hover { color: #fff; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      background-color: #fbfcf7;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(189, 214, 169, 0.28) 0, transparent 24%),
+        radial-gradient(circle at 90% 12%, rgba(246, 236, 215, 0.65) 0, transparent 26%),
+        linear-gradient(180deg, #fffcf6 0%, #fbfcf7 50%, #f5f8f4 100%);
+      color: var(--deep);
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+    .back-button {
+      position: fixed;
+      top: 22px;
+      left: 22px;
+      z-index: 50;
+      background: #ffffff;
+      color: var(--deep);
+      border: 1px solid var(--line);
+      box-shadow: 0 6px 16px rgba(71, 58, 36, 0.08);
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .back-button:hover {
+      background: #fdf8ee;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(71, 58, 36, 0.14);
+    }
+    .login-card {
+      width: min(100%, 450px);
+      padding: 2.5rem 2.25rem;
+      background: #ffffffeb;
+      border: 1px solid rgba(36, 75, 60, 0.12);
+      border-radius: 18px;
+      box-shadow: var(--soft-shadow);
+      backdrop-filter: blur(14px);
+    }
+    .card-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .brand-emblem {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 2px solid var(--gold);
+      padding: 3px;
+      margin: 0 auto 12px;
+      box-shadow: 0 4px 14px rgba(71, 58, 36, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-emblem img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+    h1 {
+      margin: 0 0 0.35rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.25rem;
+      color: var(--ink);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .intro {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    label {
+      display: grid;
+      gap: 6px;
+      margin-top: 1.1rem;
+      color: var(--deep);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cbd6d0;
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--deep);
+      font: inherit;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--leaf);
+      box-shadow: var(--focus-ring);
+    }
+    button[type="submit"] {
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 6px;
+      background: var(--deep);
+      color: #ffffff;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: var(--soft-shadow);
+      transition: all 0.25s ease;
+    }
+    button[type="submit"]:hover {
+      background: var(--leaf);
+      transform: translateY(-1px);
+    }
+    .status {
+      min-height: 1.35rem;
+      margin: 1rem 0 0;
+      color: #a32f2f;
+      font-size: 13.5px;
+      text-align: center;
+    }
+    .status.success {
+      color: var(--leaf);
+      font-weight: 600;
+    }
+    .links {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(36, 75, 60, 0.08);
+      font-size: 13px;
+    }
+    .links a {
+      color: var(--leaf);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .links a:hover {
+      text-decoration: underline;
+      color: var(--ink);
+    }
+    .register-prompt {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.35rem;
+      margin-top: 1.25rem;
+      padding: 0.85rem;
+      background: #f5f8f4;
+      border: 1px solid #e3ebe4;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    .register-prompt span {
+      color: var(--muted);
+    }
+    .register-prompt a {
+      color: var(--deep);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    .resend-verification {
+      width: 100%;
+      margin-top: 0.75rem;
+      padding: 10px;
+      background: #f1f3f2;
+      border: 1px solid #cbd6d0;
+      border-radius: 6px;
+      color: var(--deep);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .resend-verification:hover {
+      background: #e4e7e3;
+    }
   </style>
 </head>
 <body>
+  <a href="/" class="back-button">&larr; Back to SAHRUDAYA</a>
+
   <main class="login-card">
-    <h1>Sign in</h1>
-    <p class="intro">Access your SAHRUDAYA member or administrator account.</p>
+    <div class="card-header">
+      <div class="brand-emblem">
+        <img src="/SWAN_LOGO.jpg" alt="SAHRUDAYA emblem" />
+      </div>
+      <h1>Member Sign In</h1>
+      <p class="intro">Access your SAHRUDAYA member or administrator account.</p>
+    </div>
+
     <form id="member-login-form">
-      <label>Email or Username <input type="text" name="identifier" autocomplete="username" placeholder="you@example.com or admin" required /></label>
-      <label>Password <input type="password" name="password" autocomplete="current-password" required /></label>
-      <button type="submit">Sign in</button>
+      <label>
+        <span>Email or Username</span>
+        <input type="text" name="identifier" autocomplete="username" placeholder="you@example.com or admin" required />
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" name="password" autocomplete="current-password" placeholder="••••••••" required />
+      </label>
+      <button type="submit">Sign in to Account</button>
       <p id="status" class="status" role="alert"></p>
       <button type="button" id="resend-verification" class="resend-verification" style="display: none;">Resend verification email</button>
     </form>
+
     <div class="register-prompt">
       <span>New to SAHRUDAYA?</span>
       <a href="/member-register.html">Register as a new member</a>
     </div>
+
     <div class="links">
-      <a href="/">Back to site</a>
+      <a href="/">&larr; Return to website</a>
       <a href="/forgot-password.html">Forgot password?</a>
     </div>
   </main>
+
   <script>
     document.getElementById('member-login-form').addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -64,7 +271,7 @@
         const result = await response.json();
         if (!response.ok) {
           if (result.unverified && result.verificationUrl) {
-            status.innerHTML = `${result.message}<br><br><a href="${result.verificationUrl}" style="display:inline-block; padding:10px 18px; background:var(--accent); color:#ffffff; font-weight:600; text-decoration:none; border-radius:6px; margin-top:4px;">Click here to verify email now</a>`;
+            status.innerHTML = `${result.message}<br><br><a href="${result.verificationUrl}" style="display:inline-block; padding:10px 18px; background:var(--deep); color:#ffffff; font-weight:600; text-decoration:none; border-radius:6px; margin-top:4px;">Click here to verify email now</a>`;
             document.getElementById('resend-verification').style.display = 'block';
             return;
           }
@@ -104,7 +311,7 @@
         if (!response.ok) throw new Error(result.message || 'Unable to resend verification email');
         status.classList.add('success');
         if (result.verificationUrl) {
-          status.innerHTML = `${result.message}<br><br><a href="${result.verificationUrl}" style="display:inline-block; padding:10px 18px; background:var(--accent); color:#ffffff; font-weight:600; text-decoration:none; border-radius:6px; margin-top:4px;">Click here to verify email now</a>`;
+          status.innerHTML = `${result.message}<br><br><a href="${result.verificationUrl}" style="display:inline-block; padding:10px 18px; background:var(--deep); color:#ffffff; font-weight:600; text-decoration:none; border-radius:6px; margin-top:4px;">Click here to verify email now</a>`;
         } else {
           status.textContent = result.message;
         }
