@@ -318,6 +318,10 @@ app.get(['/member-dashboard', '/member-dashboard.html'], (req, res) => {
   return res.redirect('/');
 });
 
+app.get(['/moments-of-service', '/moments'], (req, res) => {
+  return res.sendFile(path.join(__dirname, 'moments-of-service.html'));
+});
+
 app.post('/api/admin/login', async (req, res) => {
   const ipAddress = req.ip;
   if (isLoginRateLimited(ipAddress)) {
