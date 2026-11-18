@@ -1284,9 +1284,12 @@ app.use((req, res, next) => {
 });
 
 app.use(express.static(path.join(__dirname), {
+  maxAge: '1d',
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
       res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    } else if (/\.(webp|jpg|jpeg|png|svg|ico|css|js|woff2|woff)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
     }
   }
 }));

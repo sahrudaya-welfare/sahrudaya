@@ -10,6 +10,8 @@
   <meta name="robots" content="index, follow" />
   <title>SAHRUDAYA | Professional Community Leadership</title>
   <link rel="icon" type="image/jpeg" href="/SWAN_LOGO.jpg" />
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="preload" href="/IMG20261031115335.webp" as="image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -93,38 +95,44 @@
         </div>
 
         <div class="hero-right">
-          <div class="floating-badge badge-top">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-            <span id="hero-floating-location">Hyderabad, India</span>
-          </div>
-
-          <div class="hero-card">
-            <div class="hero-card-header">
-              <span class="hero-card-badge">✨ Core Mission</span>
-              <h3>Education & Compassion</h3>
-            </div>
-            <p class="mission-text">
-              "To help everyone get education so that they realise the full potential of being a human and help others with a kind heart."
-            </p>
-            <div class="hero-card-points">
-              <div class="hero-card-point">
-                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Strategic Community Outreach & Support</span>
-              </div>
-              <div class="hero-card-point">
-                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Educational Sponsorships & Healthcare Aid</span>
-              </div>
-              <div class="hero-card-point">
-                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Ethical, Accountable & Modern Governance</span>
+          <div class="hero-frame">
+            <div class="hero-image-wrap">
+              <img src="/IMG20261031115335.webp" alt="SAHRUDAYA Community Service" class="hero-photo" fetchpriority="high" />
+              <div class="hero-image-overlay"></div>
+              <div class="floating-badge badge-top">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                <span id="hero-floating-location">Hyderabad, India</span>
               </div>
             </div>
-          </div>
 
-          <div class="floating-badge badge-bottom">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2b5d49" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>Verified Community Partner</span>
+            <div class="hero-card">
+              <div class="hero-card-header">
+                <span class="hero-card-badge">✨ Core Mission</span>
+                <h3>Education &amp; Compassion</h3>
+              </div>
+              <p class="mission-text">
+                "To help everyone get education so that they realise the full potential of being a human and help others with a kind heart."
+              </p>
+              <div class="hero-card-points">
+                <div class="hero-card-point">
+                  <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Strategic Community Outreach &amp; Support</span>
+                </div>
+                <div class="hero-card-point">
+                  <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Educational Sponsorships &amp; Healthcare Aid</span>
+                </div>
+                <div class="hero-card-point">
+                  <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Ethical, Accountable &amp; Modern Governance</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="floating-badge badge-bottom">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2b5d49" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Verified Community Partner</span>
+            </div>
           </div>
         </div>
       </div>
@@ -438,13 +446,14 @@
     const masthead = document.getElementById('site-header');
     const sections = document.querySelectorAll('.fade-in');
 
+    let isScrolled = false;
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        masthead.classList.add('scrolled');
-      } else {
-        masthead.classList.remove('scrolled');
+      const shouldBeScrolled = window.scrollY > 20;
+      if (shouldBeScrolled !== isScrolled) {
+        isScrolled = shouldBeScrolled;
+        masthead.classList.toggle('scrolled', isScrolled);
       }
-    });
+    }, { passive: true });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -549,19 +558,12 @@
       const slide = document.createElement('div');
       slide.className = 'gallery-slide';
 
-      const backdrop = document.createElement('img');
-      backdrop.className = 'gallery-slide-backdrop';
-      backdrop.src = imageUrl;
-      backdrop.alt = '';
-      backdrop.loading = 'lazy';
-
       const main = document.createElement('img');
       main.className = 'gallery-slide-main';
       main.src = imageUrl;
       main.alt = altText || 'Moment of Service';
       main.loading = 'lazy';
 
-      slide.appendChild(backdrop);
       slide.appendChild(main);
       return slide;
     }
