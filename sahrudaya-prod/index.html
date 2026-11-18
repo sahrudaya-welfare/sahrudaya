@@ -547,6 +547,7 @@
     let trackIndex = 1;
     let isHovered = false;
     let isDragging = false;
+    let isTransitioning = false;
     let dragStartX = 0;
     let dragDeltaX = 0;
     let activePointerId = null;
@@ -579,7 +580,10 @@
         dot.type = 'button';
         dot.className = `gallery-dot${i === activeRealIndex ? ' active' : ''}`;
         dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-        dot.addEventListener('click', () => {
+        dot.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (isTransitioning) return;
           trackIndex = i + 1;
           applyTrackTransform(true, 0);
           updateGalleryUI();
@@ -612,7 +616,8 @@
 
     function stepSlide(direction = 1) {
       const count = galleryImages.length;
-      if (count <= 1) return;
+      if (count <= 1 || isTransitioning) return;
+      isTransitioning = true;
       trackIndex += direction;
       applyTrackTransform(true, 0);
       updateGalleryUI();
@@ -620,7 +625,8 @@
       clearTimeout(wrapFallbackTimer);
       wrapFallbackTimer = setTimeout(() => {
         handleTrackBoundary();
-      }, 500);
+        isTransitioning = false;
+      }, 480);
     }
 
     function handleTrackBoundary() {
@@ -635,11 +641,14 @@
         applyTrackTransform(false, 0);
         updateGalleryUI();
       }
+      isTransitioning = false;
     }
 
     if (galleryTrack) {
-      galleryTrack.addEventListener('transitionend', () => {
-        handleTrackBoundary();
+      galleryTrack.addEventListener('transitionend', (e) => {
+        if (e.target === galleryTrack) {
+          handleTrackBoundary();
+        }
       });
     }
 
@@ -654,8 +663,13 @@
         trackIndex = 0;
         applyTrackTransform(false, 0);
         updateGalleryUI();
+        if (galleryPrev) galleryPrev.style.display = 'none';
+        if (galleryNext) galleryNext.style.display = 'none';
         return;
       }
+
+      if (galleryPrev) galleryPrev.style.display = 'flex';
+      if (galleryNext) galleryNext.style.display = 'flex';
 
       // Clones for seamless infinite looping
       const firstClone = createSlideElement(galleryImages[0], 'Moments of Service (clone)');
@@ -678,21 +692,66 @@
       clearInterval(autoSlideTimer);
       if (galleryImages.length <= 1) return;
       autoSlideTimer = setInterval(() => {
-        if (!isHovered && !isDragging) {
+        if (!isHovered && !isDragging && !isTransitioning) {
           stepSlide(1);
         }
       }, 4500);
     }
 
-    if (galleryPrev) galleryPrev.addEventListener('click', () => { stepSlide(-1); startAutoSlide(); });
-    if (galleryNext) galleryNext.addEventListener('click', () => { stepSlide(1); startAutoSlide(); });
+    // Button event listeners with full isolation from container drag handlers
+    if (galleryPrev) {
+      const onPrev = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        stepSlide(-1);
+        startAutoSlide();
+      };
+      galleryPrev.addEventListener('pointerdown', (e) => e.stopPropagation());
+      galleryPrev.addEventListener('mousedown', (e) => e.stopPropagation());
+      galleryPrev.addEventListener('click', onPrev);
+    }
+
+    if (galleryNext) {
+      const onNext = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        stepSlide(1);
+        startAutoSlide();
+      };
+      galleryNext.addEventListener('pointerdown', (e) => e.stopPropagation());
+      galleryNext.addEventListener('mousedown', (e) => e.stopPropagation());
+      galleryNext.addEventListener('click', onNext);
+    }
 
     galleryViewer.addEventListener('mouseenter', () => { isHovered = true; });
     galleryViewer.addEventListener('mouseleave', () => { isHovered = false; });
 
-    // Pointer Dragging for Touch/Mouse
+    // Keyboard navigation
+    galleryViewer.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        stepSlide(-1);
+        startAutoSlide();
+      } else if (e.key === 'ArrowRight') {
+        stepSlide(1);
+        startAutoSlide();
+      }
+    });
+
+    // Pause on hidden document tab, resume on visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        clearInterval(autoSlideTimer);
+      } else {
+        startAutoSlide();
+      }
+    });
+
+    // Pointer Dragging for Touch/Mouse (safely ignoring arrow and control buttons)
     galleryViewer.addEventListener('pointerdown', (event) => {
       if (galleryImages.length <= 1) return;
+      if (event.target.closest('.gallery-arrow') || event.target.closest('.gallery-controls')) {
+        return;
+      }
       isDragging = true;
       dragStartX = event.clientX;
       dragDeltaX = 0;
