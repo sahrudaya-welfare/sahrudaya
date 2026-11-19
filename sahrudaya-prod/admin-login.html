@@ -3,37 +3,226 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Login | SAHRUDAYA</title>
+  <title>Admin Sign In | SAHRUDAYA</title>
   <link rel="icon" type="image/jpeg" href="/SWAN_LOGO.jpg" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root { --bg: #f5f7f2; --panel: #ffffff; --border: rgba(24,112,100,.18); --text: #183b3a; --muted: #58716f; --accent: #e87958; --accent-strong: #c85b3e; --teal: #187064; }
+    :root {
+      --ink: #244b3c;
+      --deep: #17392e;
+      --leaf: #2b5d49;
+      --cream: #e69e18;
+      --gold: #c38f45;
+      --panel: #ffffff;
+      --line: #e8ddcf;
+      --muted: #66756d;
+      --soft-shadow: 0 18px 40px rgba(71, 58, 36, 0.12);
+      --focus-ring: 0 0 0 3px rgba(43, 93, 73, 0.15);
+    }
     * { box-sizing: border-box; }
-    body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 1.5rem; background: radial-gradient(circle at top left, rgba(242,193,78,.22), transparent 28%), radial-gradient(circle at 85% 12%, rgba(24,112,100,.16), transparent 30%), linear-gradient(180deg, #fbfcf7 0%, #f5f7f2 48%, #eaf3ed 100%); color: var(--text); font-family: 'Poppins', sans-serif; }
-    .login-card { width: min(100%, 420px); padding: 2.5rem; background: rgba(255,255,255,.9); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 24px 70px rgba(24,59,58,.14); }
-    h1 { margin: 0 0 .5rem; font-size: 2rem; }
-    .intro { margin: 0 0 2rem; color: var(--muted); }
-    label { display: block; margin-top: 1rem; color: var(--muted); font-size: .9rem; }
-    input { width: 100%; margin-top: .45rem; padding: .85rem 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font: inherit; }
-    input:focus { outline: 2px solid var(--teal); outline-offset: 1px; }
-    button { width: 100%; margin-top: 1.5rem; padding: .9rem 1rem; border: 0; border-radius: 8px; background: var(--accent); color: white; cursor: pointer; font: inherit; font-weight: 600; }
-    button:hover { background: var(--accent-strong); }
-    .status { min-height: 1.5rem; margin: 1rem 0 0; color: #b54736; font-size: .9rem; }
-    .back { display: inline-block; margin-top: 1rem; color: var(--teal); font-size: .9rem; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      background-color: #fbfcf7;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(189, 214, 169, 0.28) 0, transparent 24%),
+        radial-gradient(circle at 90% 12%, rgba(246, 236, 215, 0.65) 0, transparent 26%),
+        linear-gradient(180deg, #fffcf6 0%, #fbfcf7 50%, #f5f8f4 100%);
+      color: var(--deep);
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+    .back-button {
+      position: fixed;
+      top: 22px;
+      left: 22px;
+      z-index: 50;
+      background: #ffffff;
+      color: var(--deep);
+      border: 1px solid var(--line);
+      box-shadow: 0 6px 16px rgba(71, 58, 36, 0.08);
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .back-button:hover {
+      background: #fdf8ee;
+      transform: translateY(-1px);
+    }
+    .login-card {
+      width: min(100%, 440px);
+      padding: 2.5rem 2.25rem;
+      background: #ffffffeb;
+      border: 1px solid rgba(36, 75, 60, 0.12);
+      border-radius: 18px;
+      box-shadow: var(--soft-shadow);
+      backdrop-filter: blur(14px);
+    }
+    .card-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .admin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: #fdf2da;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--deep);
+      margin-bottom: 12px;
+    }
+    .brand-emblem {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 2px solid var(--gold);
+      padding: 3px;
+      margin: 0 auto 12px;
+      box-shadow: 0 4px 14px rgba(71, 58, 36, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-emblem img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+    h1 {
+      margin: 0 0 0.35rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.25rem;
+      color: var(--ink);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .intro {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    label {
+      display: grid;
+      gap: 6px;
+      margin-top: 1.1rem;
+      color: var(--deep);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cbd6d0;
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--deep);
+      font: inherit;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--leaf);
+      box-shadow: var(--focus-ring);
+    }
+    button[type="submit"] {
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 6px;
+      background: var(--deep);
+      color: #ffffff;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: var(--soft-shadow);
+      transition: all 0.25s ease;
+    }
+    button[type="submit"]:hover {
+      background: var(--leaf);
+      transform: translateY(-1px);
+    }
+    .status {
+      min-height: 1.35rem;
+      margin: 1rem 0 0;
+      color: #a32f2f;
+      font-size: 13.5px;
+      text-align: center;
+    }
+    .links {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(36, 75, 60, 0.08);
+      font-size: 13px;
+    }
+    .links a {
+      color: var(--leaf);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .links a:hover {
+      text-decoration: underline;
+      color: var(--ink);
+    }
   </style>
 </head>
 <body>
+  <a href="/" class="back-button">&larr; Back to SAHRUDAYA</a>
+
   <main class="login-card">
-    <h1>Admin sign in</h1>
-    <p class="intro">Access the SAHRUDAYA administration control center.</p>
+    <div class="card-header">
+      <span class="admin-badge">🔒 Control Center</span>
+      <div class="brand-emblem">
+        <img src="/SWAN_LOGO.jpg" alt="SAHRUDAYA emblem" />
+      </div>
+      <h1>Admin Console</h1>
+      <p class="intro">Access the SAHRUDAYA administration control center.</p>
+    </div>
+
     <form id="login-form">
-      <label>Username or Email <input type="text" name="username" autocomplete="username" required /></label>
-      <label>Password <input type="password" name="password" autocomplete="current-password" required /></label>
-      <button type="submit">Sign in</button>
+      <label>
+        <span>Username or Administrator Email</span>
+        <input type="text" name="username" autocomplete="username" placeholder="sahrudaya.wa@gmail.com" required />
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" name="password" autocomplete="current-password" placeholder="••••••••" required />
+      </label>
+      <button type="submit">Sign in as Administrator</button>
       <p id="status" class="status" role="alert"></p>
     </form>
-    <a class="back" href="/">Back to site</a>
+
+    <div class="links">
+      <a href="/">&larr; Return to website</a>
+      <a href="/member-login.html">Member sign in</a>
+    </div>
   </main>
+
   <script>
     document.getElementById('login-form').addEventListener('submit', async (event) => {
       event.preventDefault();

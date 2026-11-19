@@ -318,6 +318,10 @@ app.get(['/member-dashboard', '/member-dashboard.html'], (req, res) => {
   return res.redirect('/');
 });
 
+app.get(['/moments-of-service', '/moments'], (req, res) => {
+  return res.sendFile(path.join(__dirname, 'moments-of-service.html'));
+});
+
 app.post('/api/admin/login', async (req, res) => {
   const ipAddress = req.ip;
   if (isLoginRateLimited(ipAddress)) {
@@ -1284,9 +1288,12 @@ app.use((req, res, next) => {
 });
 
 app.use(express.static(path.join(__dirname), {
+  maxAge: '1d',
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
       res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    } else if (/\.(webp|jpg|jpeg|png|svg|ico|css|js|woff2|woff)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
     }
   }
 }));

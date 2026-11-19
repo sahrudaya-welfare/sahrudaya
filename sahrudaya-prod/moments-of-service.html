@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moments of Service | SAHRUDAYA</title>
+  <link rel="icon" type="image/jpeg" href="/SWAN_LOGO.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- =======================================================================
+       Header & Sticky Masthead
+       ======================================================================= -->
+  <header class="masthead" id="masthead">
+    <div class="container masthead-inner">
+      <a href="/" class="brand-block" aria-label="SAHRUDAYA Homepage">
+        <div class="brand-logo-wrap">
+          <img src="/SWAN_LOGO.jpg" alt="SAHRUDAYA logo" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">SAHRUDAYA</span>
+          <span class="brand-tagline">Serving with heart</span>
+        </div>
+      </a>
+
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <a href="/#about">Who We Are</a>
+        <a href="/moments-of-service.html" class="active">Moments of Service</a>
+        <a href="/#services">Our Services</a>
+        <a href="/#membership">Membership</a>
+        <a href="/#executive-board">Executive Board</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <div id="nav-guest-actions" style="display: flex; gap: 8px; align-items: center;">
+          <a href="/member-login.html" class="btn-nav-login">Sign In</a>
+          <a href="/member-register.html" class="btn-nav-signup">Register</a>
+        </div>
+        <div id="nav-member-actions" style="display: none; gap: 8px; align-items: center;">
+          <a href="/#membership" id="nav-member-link" class="user-account-pill">
+            <span class="user-avatar-badge" id="nav-user-avatar">M</span>
+            <span id="nav-member-name">Member</span>
+          </a>
+          <a href="#" id="nav-member-logout" class="btn-nav-logout">Log out</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- =======================================================================
+         Archive Hero Section
+         ======================================================================= -->
+    <section class="archive-hero">
+      <div class="container">
+        <div class="archive-breadcrumb">
+          <a href="/">Home</a>
+          <span>/</span>
+          <span>Moments of Service</span>
+        </div>
+        <span class="eyebrow">CHRONOLOGICAL IMPACT ARCHIVES</span>
+        <h1>Moments of Service Through the Years</h1>
+        <p>
+          An inspiring visual archive spanning almost two decades of compassionate grassroots service, student education, child welfare, and community empowerment. Guided by our founding mantra: <em>Sahrudayam Sada Vaanchitam</em> - nurturing kind hearts that share happiness across generations.
+        </p>
+
+        <div class="archive-stats-ribbon">
+          <div class="archive-stat-item">
+            <div class="archive-stat-icon">&#128197;</div>
+            <span><strong>2007 - 2026</strong> Service History</span>
+          </div>
+          <div class="archive-stat-item">
+            <div class="archive-stat-icon">&#127891;</div>
+            <span><strong>1,000+</strong> Students &amp; Families Supported</span>
+          </div>
+          <div class="archive-stat-item">
+            <div class="archive-stat-icon">&#128444;</div>
+            <span><strong>47+</strong> Documented Moments Across 12 Years</span>
+          </div>
+          <div class="archive-stat-item">
+            <div class="archive-stat-icon">&#128737;</div>
+            <span><strong>100%</strong> Audited &amp; Transparent Execution</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         Call to Action Banner (Moved to Top for Immediate Accessibility)
+         ======================================================================= -->
+    <section class="section section-warm" style="padding: 2.25rem 0; border-top: 1px solid var(--line-subtle); border-bottom: 1px solid var(--line-subtle);">
+      <div class="container" style="text-align: center; max-width: 760px; margin: 0 auto;">
+        <span class="eyebrow">MAKE A LASTING IMPACT</span>
+        <h2 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(28px, 3.2vw, 38px); color: var(--ink); margin-bottom: 0.75rem;">
+          Be Part of Our Next Chapter of Service
+        </h2>
+        <p style="color: var(--muted-dark); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem;">
+          Join our dedicated network of members, professionals, and volunteers. Together, we can ensure every child and community receives the education, resources, and compassionate support they deserve.
+        </p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <a href="/member-register.html" class="btn-primary" style="height: 42px; padding: 0 24px;">Become a Member</a>
+          <a href="/#contact" class="btn-secondary" style="height: 42px; padding: 0 22px;">Collaborate / Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         Sticky Year Filter Bar
+         ======================================================================= -->
+    <nav class="year-nav-sticky" id="year-nav" aria-label="Year navigation">
+      <div class="container year-nav-inner">
+        <div class="year-nav-pills" id="year-nav-pills">
+          <a href="#year-2026" class="year-pill active" data-year="2026">
+            <span>2026</span>
+            <span class="year-pill-count">4</span>
+          </a>
+          <a href="#year-2023" class="year-pill" data-year="2023">
+            <span>2023</span>
+            <span class="year-pill-count">1</span>
+          </a>
+          <a href="#year-2022" class="year-pill" data-year="2022">
+            <span>2022</span>
+            <span class="year-pill-count">5</span>
+          </a>
+          <a href="#year-2021" class="year-pill" data-year="2021">
+            <span>2021</span>
+            <span class="year-pill-count">3</span>
+          </a>
+          <a href="#year-2020" class="year-pill" data-year="2020">
+            <span>2020</span>
+            <span class="year-pill-count">5</span>
+          </a>
+          <a href="#year-2018" class="year-pill" data-year="2018">
+            <span>2018</span>
+            <span class="year-pill-count">2</span>
+          </a>
+          <a href="#year-2017" class="year-pill" data-year="2017">
+            <span>2017</span>
+            <span class="year-pill-count">4</span>
+          </a>
+          <a href="#year-2016" class="year-pill" data-year="2016">
+            <span>2016</span>
+            <span class="year-pill-count">1</span>
+          </a>
+          <a href="#year-2015" class="year-pill" data-year="2015">
+            <span>2015</span>
+            <span class="year-pill-count">3</span>
+          </a>
+          <a href="#year-2013" class="year-pill" data-year="2013">
+            <span>2013</span>
+            <span class="year-pill-count">3</span>
+          </a>
+          <a href="#year-2009" class="year-pill" data-year="2009">
+            <span>2009</span>
+            <span class="year-pill-count">12</span>
+          </a>
+          <a href="#year-2007" class="year-pill" data-year="2007">
+            <span>2007</span>
+            <span class="year-pill-count">4</span>
+          </a>
+        </div>
+        <a href="/" class="year-pill" style="color: var(--leaf); border-color: #cbd6d0;">
+          &larr; Back to Home
+        </a>
+      </div>
+    </nav>
+
+    <!-- =======================================================================
+         Container for Year-Wise Slider Sections (Rendered descending 2026 -> 2007)
+         ======================================================================= -->
+    <div id="year-sections-container"></div>
+  </main>
+
+  <!-- =======================================================================
+       Footer
+       ======================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <span class="footer-brand">
+            <strong>SAHRUDAYA</strong>
+          </span>
+          <p>Professional leadership and community service designed for modern organizations and lasting social impact.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#about">Who We Are</a></li>
+            <li><a href="/moments-of-service.html">Moments of Service</a></li>
+            <li><a href="/#services">Our Services</a></li>
+            <li><a href="/#membership">Membership</a></li>
+            <li><a href="/#executive-board">Executive Board</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Member Area</h4>
+          <ul>
+            <li><a href="/member-login.html">Member Sign In</a></li>
+            <li><a href="/member-register.html">Become a Member</a></li>
+            <li><a href="/forgot-password.html">Forgot Password</a></li>
+            <li><a href="/admin-login.html">Admin Portal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact &amp; Legal</h4>
+          <ul>
+            <li><a href="/#contact">Send a Message</a></li>
+            <li><a href="mailto:sahrudaya.wa@gmail.com">sahrudaya.wa@gmail.com</a></li>
+            <li><a href="tel:+919440331420">+91 9440331420</a></li>
+            <li><span>Hyderabad, India</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span id="current-year">2026</span> SAHRUDAYA Welfare Association. All rights reserved.</span>
+        <div class="footer-contact-line">
+          <span>Sahrudayam Sada Vaanchitam</span>
+          <span class="footer-divider">&bull;</span>
+          <span>Regd. Community Welfare Organization</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =======================================================================
+       Year-Wise Slider Generator & Interactive Controller
+       ======================================================================= -->
+  <script>
+    (function () {
+      // Complete Year-Wise Moments Database (Descending Order: 2026 down to 2007)
+      const yearGalleries = [
+        {
+          year: '2026',
+          title: 'Sri Saraswathi Shishu Mandir Sponsorship & Merit Felicitations',
+          description: 'Educational grant handover, student courtyard assembly, curriculum supplies distribution, and student academic merit awards.',
+          images: [
+            { src: '/IMG20261031115335.webp', alt: 'Institutional Sponsorship and Cheque Handover' },
+            { src: '/IMG20261031120056.webp', alt: 'Student Assembly and Motivation Forum' },
+            { src: '/IMG20261031120439.webp', alt: 'Learning Materials and Course Kits Distribution' },
+            { src: '/IMG20261031121754.webp', alt: 'Student Merit Certificate Felicitation' }
+          ]
+        },
+        {
+          year: '2023',
+          title: 'Welfare Association Strategic Review & Roadmap Assembly',
+          description: 'Strategic planning assembly with founding trustees and community coordinators reviewing ongoing welfare programs, auditing resource allocation, and planning regional chapters.',
+          images: [
+            { src: '/photos/2023/IMG-20230321-WA0002.jpg', alt: 'SAHRUDAYA Welfare Association Strategic Review' }
+          ]
+        },
+        {
+          year: '2022',
+          title: 'Community Educational Drives & Student Felicitations',
+          description: 'Grassroots educational outreach drives delivering essential course books, geometry kits, writing workbooks, and honoring students for perseverance.',
+          images: [
+            { src: '/photos/2022/IMG_20221120_115104.jpg', alt: 'Community Gathering and Distribution Assembly' },
+            { src: '/photos/2022/IMG_20221120_120243.jpg', alt: 'Student Interactive Learning and Teamwork Session' },
+            { src: '/photos/2022/IMG_20221120_120416.jpg', alt: 'Distribution of Course Books and Creative Supplies' },
+            { src: '/photos/2022/IMG_20221120_120446.jpg', alt: 'Student Felicitation and Academic Encouragement' },
+            { src: '/photos/2022/IMG_20221120_120522.jpg', alt: 'Volunteer and Student Welfare Collaboration Group' }
+          ]
+        },
+        {
+          year: '2021',
+          title: 'Pandemic Recovery & Academic Partnership Drives',
+          description: 'Supporting school campuses as in-person education resumed, delivering personal stationery, textbooks, and coordinating faculty partnerships for vulnerable students.',
+          images: [
+            { src: '/photos/2021/20210304_102606.jpg', alt: 'Educational Aid and Materials Distribution' },
+            { src: '/photos/2021/20210304_103021.jpg', alt: 'Direct Student Courseware and Book Distribution' },
+            { src: '/photos/2021/20210304_104659.jpg', alt: 'Teacher and Staff Academic Partnership Session' }
+          ]
+        },
+        {
+          year: '2020',
+          title: 'Live2gether Vasista & Children Protective Welfare Outreach',
+          description: 'Dedicated child welfare support, nutritious meal programs, tailored study workshops, and health packs during challenging pandemic times.',
+          images: [
+            { src: '/photos/2020/Live2gether_Vasista_1_2020.jpg', alt: 'Live2gether Vasista Child Care and Health Support' },
+            { src: '/photos/2020/Live2gether_Kids_1.jpg', alt: 'Live2gether Kids Enrichment and Tutoring Program' },
+            { src: '/photos/2020/Live2gether_Kids_4.jpg', alt: 'Live2gether Kids Mentorship and Creativity Workshops' },
+            { src: '/photos/2020/Live2gether_Kids_6.jpg', alt: 'Live2gether Kids Recreation and Social Connection' },
+            { src: '/photos/2020/Live2gether_Kids_7.jpg', alt: 'Live2gether Kids Study Kits and Health Packs' }
+          ]
+        },
+        {
+          year: '2018',
+          title: 'Live2gether Annual Welfare & Youth Recognition',
+          description: 'Annual gathering with youth and guardians providing educational stipends, celebrating academic milestones, and reinforcing community bonds.',
+          images: [
+            { src: '/photos/2018/Live2gether_2018.jpg', alt: 'Live2gether Annual Welfare and Youth Support Drive' },
+            { src: '/photos/2018/Live2gether_Kids_8.jpg', alt: 'Live2gether Kids Recognition and Celebration Ceremony' }
+          ]
+        },
+        {
+          year: '2017',
+          title: 'Live2gether Youth Mentorship & Creative Workshops',
+          description: 'Skill-building workshops, creative arts activities, and school essentials distribution empowering young learners.',
+          images: [
+            { src: '/photos/2017/Live2gether_2017.jpg', alt: 'Live2gether Community Camp' },
+            { src: '/photos/2017/Live2gether_Kids_3.jpg', alt: 'Youth Mentorship and Guidance Session' },
+            { src: '/photos/2017/Live2gether_Kids_4.jpg', alt: 'Creative Workshop and Skill Development' },
+            { src: '/photos/2017/20170709_180946.jpg', alt: 'Community Celebration and Distribution Gathering' }
+          ]
+        },
+        {
+          year: '2016',
+          title: 'Adarana Welfare & Child Care Initiative',
+          description: 'Special welfare initiative supporting orphaned and underprivileged children with nutritional aid and academic encouragement.',
+          images: [
+            { src: '/photos/2016/Adarana_2016.jpg', alt: 'Adarana Home Care and Support Mission' }
+          ]
+        },
+        {
+          year: '2015',
+          title: 'Live2gether Outreach & Shantiniketan Educational Aid',
+          description: 'Partnering with Shantiniketan school and local communities to sponsor deserving students and provide essential supplies.',
+          images: [
+            { src: '/photos/2016/Live2gether_2015.jpg', alt: 'Live2gether Outreach Gathering' },
+            { src: '/photos/2016/Live2gether_2015_1.jpg', alt: 'Student Learning Kits Distribution' },
+            { src: '/photos/2016/Shantiniketan_2015.jpg', alt: 'Shantiniketan School Sponsorship Program' }
+          ]
+        },
+        {
+          year: '2013',
+          title: 'Give Hope Foundation Collaboration & Educational Grants',
+          description: 'Joint welfare initiatives with Give Hope Foundation providing long-term student sponsorships and community upliftment.',
+          images: [
+            { src: '/photos/2013/GiveHope_2013.jpg', alt: 'Give Hope Foundation Student Support' },
+            { src: '/photos/2013/GiveHope_2013_1.jpg', alt: 'Educational Grants and Mentorship Drive' },
+            { src: '/photos/2013/GIVE%20HOPE%20FOUNDATION.jpeg', alt: 'Give Hope Foundation Assembly' }
+          ]
+        },
+        {
+          year: '2009',
+          title: 'Ananda Marga School Transformation & Comprehensive Aid',
+          description: 'Flagship educational overhaul providing textbooks, classroom libraries, playground facilities, and direct tuition grants.',
+          images: [
+            { src: '/photos/2009/Ananda%20Marga_Books_11.JPG', alt: 'Ananda Marga Study Kits and Library Books' },
+            { src: '/photos/2009/Ananda%20Marga_Books_13.JPG', alt: 'Student Textbook Handover Assembly' },
+            { src: '/photos/2009/Ananda%20Marga_Books_14.JPG', alt: 'Educational Grant and Book Distribution' },
+            { src: '/photos/2009/Ananda%20Marga_Books_15.JPG', alt: 'Classroom Supplies Distribution' },
+            { src: '/photos/2009/Ananda%20Marga_Books_2.JPG', alt: 'Academic Kit Presentation Ceremony' },
+            { src: '/photos/2009/Ananda%20Marga_Books_3.JPG', alt: 'Educational Aid Handover Ceremony' },
+            { src: '/photos/2009/Ananda%20Marga_Books_9.JPG', alt: 'Library Stocking and Reading Corner' },
+            { src: '/photos/2009/Ananda%20Marga_Entrance_2.JPG', alt: 'Campus Welcome and Student Assembly' },
+            { src: '/photos/2009/Ananda%20Marga_Kids_6.JPG', alt: 'Student Reading Groups and Literacy Drive' },
+            { src: '/photos/2009/Ananda%20Marga_Play%20ground_1.JPG', alt: 'Recreation Facility and Playground Setup' },
+            { src: '/photos/2009/Ananda%20Marga_Play%20ground_3.JPG', alt: 'Children Outdoor Sports and Team Play' },
+            { src: '/photos/2009/Ananda%20Marga_Principal.JPG', alt: 'Educational Grant Handover to Principal' }
+          ]
+        },
+        {
+          year: '2007',
+          title: 'Home for the Blind Inaugural Community Welfare Mission',
+          description: 'SAHRUDAYA inaugural community mission delivering essential provisions, assistive aid, and heartfelt companionship to visually impaired residents.',
+          images: [
+            { src: '/photos/2007/Home%20for%20the%20blind_13.jpg', alt: 'Home for the Blind Foundational Welfare Visit' },
+            { src: '/photos/2007/Home%20for%20the%20blind_16.jpg', alt: 'Direct Assistance and Companionship with Residents' },
+            { src: '/photos/2007/Home%20for%20the%20blind_2.jpg', alt: 'Braille Literacy and Assistive Tools Contribution' },
+            { src: '/photos/2007/Home%20for%20the%20blind_21.jpg', alt: 'Foundation Assembly and Continuing Support Pledge' }
+          ]
+        }
+      ];
+
+      // Reusable Slider Initializer (Exact behavior from index.html)
+      function initGallerySlider({ viewer, track, prev, next, dots, counter, images }) {
+        if (!viewer || !track || !images || images.length === 0) return;
+        const count = images.length;
+        let trackIndex = count > 1 ? 1 : 0;
+        let isHovered = false;
+        let isDragging = false;
+        let isTransitioning = false;
+        let dragStartX = 0;
+        let dragDeltaX = 0;
+        let activePointerId = null;
+        let autoTimer = null;
+        let wrapFallbackTimer = null;
+
+        function createSlideElement(imgObj) {
+          const slide = document.createElement('div');
+          slide.className = 'gallery-slide';
+          const img = document.createElement('img');
+          img.className = 'gallery-slide-main';
+          img.src = imgObj.src;
+          img.alt = imgObj.alt || 'Moment of Service';
+          img.title = imgObj.alt || 'Moment of Service';
+          img.loading = 'lazy';
+          slide.appendChild(img);
+          return slide;
+        }
+
+        function applyTrackTransform(withTransition = true, offsetPx = 0) {
+          track.style.transition = withTransition ? 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)' : 'none';
+          track.style.transform = `translateX(calc(-${trackIndex * 100}% + ${offsetPx}px))`;
+        }
+
+        function updateUI() {
+          const realIdx = count > 1 ? (trackIndex - 1 + count) % count : 0;
+          if (counter) {
+            counter.textContent = `${realIdx + 1} / ${count}`;
+          }
+          if (dots) {
+            const dotEls = dots.querySelectorAll('.gallery-dot');
+            dotEls.forEach((dot, idx) => {
+              dot.classList.toggle('active', idx === realIdx);
+            });
+          }
+        }
+
+        function renderDots() {
+          if (!dots) return;
+          dots.innerHTML = '';
+          if (count <= 1) return;
+          for (let i = 0; i < count; i += 1) {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = `gallery-dot${i === 0 ? ' active' : ''}`;
+            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            dot.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (isTransitioning) return;
+              trackIndex = i + 1;
+              applyTrackTransform(true, 0);
+              updateUI();
+              startAutoSlide();
+            });
+            dots.appendChild(dot);
+          }
+        }
+
+        function stepSlide(direction = 1) {
+          if (count <= 1 || isTransitioning) return;
+          isTransitioning = true;
+          trackIndex += direction;
+          applyTrackTransform(true, 0);
+          updateUI();
+
+          clearTimeout(wrapFallbackTimer);
+          wrapFallbackTimer = setTimeout(() => {
+            handleBoundary();
+            isTransitioning = false;
+          }, 480);
+        }
+
+        function handleBoundary() {
+          if (count <= 1) return;
+          if (trackIndex >= count + 1) {
+            trackIndex = 1;
+            applyTrackTransform(false, 0);
+            updateUI();
+          } else if (trackIndex <= 0) {
+            trackIndex = count;
+            applyTrackTransform(false, 0);
+            updateUI();
+          }
+          isTransitioning = false;
+        }
+
+        track.addEventListener('transitionend', (e) => {
+          if (e.target === track) handleBoundary();
+        });
+
+        // Populate track
+        track.innerHTML = '';
+        if (count === 1) {
+          track.appendChild(createSlideElement(images[0]));
+          trackIndex = 0;
+          applyTrackTransform(false, 0);
+          updateUI();
+          if (prev) prev.style.display = 'none';
+          if (next) next.style.display = 'none';
+          if (dots) dots.style.display = 'none';
+          return;
+        }
+
+        // Seamless infinite cloning
+        const firstClone = createSlideElement(images[0]);
+        const lastClone = createSlideElement(images[count - 1]);
+        track.appendChild(lastClone);
+        images.forEach((imgObj) => {
+          track.appendChild(createSlideElement(imgObj));
+        });
+        track.appendChild(firstClone);
+
+        trackIndex = 1;
+        applyTrackTransform(false, 0);
+        renderDots();
+        updateUI();
+
+        function startAutoSlide() {
+          clearInterval(autoTimer);
+          if (count <= 1) return;
+          autoTimer = setInterval(() => {
+            if (!isHovered && !isDragging && !isTransitioning) {
+              stepSlide(1);
+            }
+          }, 2800);
+        }
+
+        // Arrow button click handlers
+        if (prev) {
+          prev.addEventListener('pointerdown', (e) => e.stopPropagation());
+          prev.addEventListener('mousedown', (e) => e.stopPropagation());
+          prev.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            stepSlide(-1);
+            startAutoSlide();
+          });
+        }
+
+        if (next) {
+          next.addEventListener('pointerdown', (e) => e.stopPropagation());
+          next.addEventListener('mousedown', (e) => e.stopPropagation());
+          next.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            stepSlide(1);
+            startAutoSlide();
+          });
+        }
+
+        viewer.addEventListener('mouseenter', () => { isHovered = true; });
+        viewer.addEventListener('mouseleave', () => { isHovered = false; });
+
+        // Keyboard navigation
+        viewer.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') {
+            stepSlide(-1);
+            startAutoSlide();
+          } else if (e.key === 'ArrowRight') {
+            stepSlide(1);
+            startAutoSlide();
+          }
+        });
+
+        // Touch & pointer dragging
+        viewer.addEventListener('pointerdown', (e) => {
+          if (count <= 1) return;
+          if (e.target.closest('.gallery-arrow') || e.target.closest('.gallery-controls')) return;
+          isDragging = true;
+          dragStartX = e.clientX;
+          dragDeltaX = 0;
+          activePointerId = e.pointerId;
+          try { viewer.setPointerCapture(e.pointerId); } catch (_) {}
+          applyTrackTransform(false, 0);
+        });
+
+        viewer.addEventListener('pointermove', (e) => {
+          if (!isDragging || e.pointerId !== activePointerId) return;
+          dragDeltaX = e.clientX - dragStartX;
+          applyTrackTransform(false, dragDeltaX);
+        });
+
+        function finishDrag(e) {
+          if (!isDragging || (e.pointerId && e.pointerId !== activePointerId)) return;
+          isDragging = false;
+          try { viewer.releasePointerCapture(activePointerId); } catch (_) {}
+          const threshold = Math.min(80, viewer.clientWidth * 0.15);
+          if (dragDeltaX < -threshold) {
+            stepSlide(1);
+          } else if (dragDeltaX > threshold) {
+            stepSlide(-1);
+          } else {
+            applyTrackTransform(true, 0);
+          }
+          dragDeltaX = 0;
+          startAutoSlide();
+        }
+
+        viewer.addEventListener('pointerup', finishDrag);
+        viewer.addEventListener('pointercancel', finishDrag);
+
+        startAutoSlide();
+      }
+
+      // Render all Year Sections and Initialize Each Slider
+      const container = document.getElementById('year-sections-container');
+
+      yearGalleries.forEach((yd, index) => {
+        const isWarm = index % 2 === 1;
+        const section = document.createElement('section');
+        section.id = `year-${yd.year}`;
+        section.className = `section ${isWarm ? 'section-warm' : ''}`;
+        section.setAttribute('data-year-anchor', yd.year);
+
+        const photoCountText = `${yd.images.length} ${yd.images.length === 1 ? 'Photo' : 'Photos'}`;
+
+        section.innerHTML = `
+          <div class="container">
+            <div style="max-width: 960px; margin: 0 auto 1.5rem;">
+              <div class="section-header" style="margin: 0; max-width: 100%;">
+                <span class="section-meta">Year ${yd.year} &bull; ${photoCountText}</span>
+                <h2>${yd.title}</h2>
+                <p>${yd.description}</p>
+              </div>
+            </div>
+            <div class="gallery-grid">
+              <article class="gallery-card">
+                <div class="gallery-viewer" id="gallery-viewer-${yd.year}" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Year ${yd.year} moments">
+                  <div class="gallery-track" id="gallery-track-${yd.year}"></div>
+                  <button type="button" class="gallery-arrow gallery-arrow-prev" id="gallery-prev-${yd.year}" aria-label="Previous image">&#10094;</button>
+                  <button type="button" class="gallery-arrow gallery-arrow-next" id="gallery-next-${yd.year}" aria-label="Next image">&#10095;</button>
+                </div>
+                <div class="gallery-controls">
+                  <div class="gallery-dots" id="gallery-dots-${yd.year}" aria-label="Slide navigation"></div>
+                  <span class="gallery-counter" id="gallery-counter-${yd.year}">1 / ${yd.images.length}</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(section);
+
+        // Initialize slider immediately for this year
+        initGallerySlider({
+          viewer: section.querySelector(`#gallery-viewer-${yd.year}`),
+          track: section.querySelector(`#gallery-track-${yd.year}`),
+          prev: section.querySelector(`#gallery-prev-${yd.year}`),
+          next: section.querySelector(`#gallery-next-${yd.year}`),
+          dots: section.querySelector(`#gallery-dots-${yd.year}`),
+          counter: section.querySelector(`#gallery-counter-${yd.year}`),
+          images: yd.images
+        });
+      });
+
+      // Sticky Year Filter Active Highlighting & Smooth Scrolling
+      const yearPills = document.querySelectorAll('.year-pill[data-year]');
+      const yearSections = document.querySelectorAll('section[data-year-anchor]');
+
+      yearPills.forEach((pill) => {
+        pill.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = pill.getAttribute('href');
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            const offsetTop = targetEl.getBoundingClientRect().top + window.pageYOffset - 125;
+            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Scroll Spy for Year Filter Pills
+      window.addEventListener('scroll', () => {
+        let currentYear = '2026';
+        yearSections.forEach((sec) => {
+          const rect = sec.getBoundingClientRect();
+          if (rect.top <= 200 && rect.bottom >= 120) {
+            currentYear = sec.getAttribute('data-year-anchor');
+          }
+        });
+
+        yearPills.forEach((pill) => {
+          pill.classList.toggle('active', pill.getAttribute('data-year') === currentYear);
+        });
+      }, { passive: true });
+
+      // Member Authentication State Check (Shared Navbar Session)
+      async function checkAuthSession() {
+        const guestBox = document.getElementById('nav-guest-actions');
+        const memberBox = document.getElementById('nav-member-actions');
+        const avatarEl = document.getElementById('nav-user-avatar');
+        const nameEl = document.getElementById('nav-member-name');
+        const logoutBtn = document.getElementById('nav-member-logout');
+
+        try {
+          const res = await fetch('/api/members/me', { credentials: 'same-origin' });
+          if (res.ok) {
+            const data = await res.json();
+            if (data.status === 'ok' && data.member) {
+              if (guestBox) guestBox.style.display = 'none';
+              if (memberBox) memberBox.style.display = 'flex';
+              if (nameEl) nameEl.textContent = data.member.name.split(' ')[0] || 'Member';
+              if (avatarEl) avatarEl.textContent = (data.member.name || 'M')[0].toUpperCase();
+            }
+          }
+        } catch (_) {}
+
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            try {
+              await fetch('/api/members/logout', { method: 'POST', credentials: 'same-origin' });
+              window.location.reload();
+            } catch (_) {
+              window.location.reload();
+            }
+          });
+        }
+      }
+
+      checkAuthSession();
+
+      // Update current footer year
+      const yearSpan = document.getElementById('current-year');
+      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>

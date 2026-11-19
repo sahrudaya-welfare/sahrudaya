@@ -6,87 +6,179 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="SAHRUDAYA is a professional community organization focused on leadership, service, and impact." />
-  <meta name="theme-color" content="#0d1117" />
+  <meta name="theme-color" content="#17392e" />
   <meta name="robots" content="index, follow" />
-  <title>SAHRUDAYA</title>
+  <title>SAHRUDAYA | Professional Community Leadership</title>
   <link rel="icon" type="image/jpeg" href="/SWAN_LOGO.jpg" />
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="preload" href="/IMG20261031115335.webp" as="image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
+  <!-- =======================================================================
+       Masthead / Navbar (WeHive Style)
+       ======================================================================= -->
   <div class="masthead" id="site-header">
     <div class="container masthead-inner">
-      <a href="#home" class="logo logo-brand">
-        <img src="SWAN_LOGO.jpg" alt="SAHRUDAYA logo" />
-      </a>
-      <header class="site-header">
-        <div class="header-inner">
-          <div class="header-identity">
-            <a href="#home" class="header-brand">SAHRUDAYA</a>
-            <small id="site-tagline">Serving with heart</small>
-          </div>
-          <nav class="site-nav">
-            <a href="#home">Home</a>
-            <a href="#about">Who We Are</a>
-            <a href="#images">Moments of Service</a>
-            <a href="#services">Our Services</a>
-            <a href="#membership">Membership</a>
-            <a href="#executive-board">Executive Board</a>
-            <a href="#contact">Contact</a>
-            <a href="#membership" id="nav-member-link" style="display: none; color: var(--accent-strong); font-weight: 600;">👤 <span id="nav-member-name">Member</span></a>
-            <a href="#" id="nav-member-logout" style="display: none; color: #b54343;">Log out</a>
-          </nav>
+      <a href="#home" class="brand-block">
+        <div class="brand-logo-wrap">
+          <img src="SWAN_LOGO.jpg" alt="SAHRUDAYA logo" />
         </div>
-      </header>
+        <div class="brand-text">
+          <span class="brand-title">SAHRUDAYA</span>
+          <span class="brand-tagline" id="site-tagline">Serving with heart</span>
+        </div>
+      </a>
+
+      <nav class="site-nav">
+        <a href="#home">Home</a>
+        <a href="#about">Who We Are</a>
+        <a href="/moments-of-service.html">Moments of Service</a>
+        <a href="#services">Our Services</a>
+        <a href="#membership">Membership</a>
+        <a href="#executive-board">Executive Board</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <div id="nav-guest-actions" style="display: flex; gap: 8px; align-items: center;">
+          <a href="/member-login.html" class="btn-nav-login">Sign In</a>
+          <a href="/member-register.html" class="btn-nav-signup">Register</a>
+        </div>
+        <div id="nav-member-actions" style="display: none; gap: 8px; align-items: center;">
+          <a href="#membership" id="nav-member-link" class="user-account-pill">
+            <span class="user-avatar-badge" id="nav-user-avatar">M</span>
+            <span id="nav-member-name">Member</span>
+          </a>
+          <a href="#" id="nav-member-logout" class="btn-nav-logout">Log out</a>
+        </div>
+      </div>
     </div>
   </div>
 
   <main>
-    <div id="home"></div>
-    <section id="about" class="section section-dark fade-in">
+    <!-- =======================================================================
+         Hero Section (WeHive 2-Column Composition with Ambient Glow)
+         ======================================================================= -->
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <span class="hero-kicker">Professional Community Leadership</span>
+          <h1 id="hero-statement">Every Donation <em>Creates Hope</em></h1>
+          <p class="hero-copy">
+            <strong>Sahrudayam Sada Vaanchitam:</strong> To have people with a kind heart across the globe so that everyone shares happiness. We empower members and communities with strategic guidance, transparent leadership, and sustainable social impact.
+          </p>
+          <div class="hero-actions">
+            <a href="#membership" class="btn-primary">Become a Member</a>
+            <a href="/moments-of-service.html" class="btn-secondary">Moments of Service</a>
+          </div>
+          <div class="trust-row">
+            <div class="trust-item">
+              <strong>1,000+</strong>
+              <span>Members & Volunteers</span>
+            </div>
+            <div class="trust-item">
+              <strong>100%</strong>
+              <span>Verified Governance</span>
+            </div>
+            <div class="trust-item">
+              <strong>10+</strong>
+              <span>Years of Service</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-frame">
+            <div class="hero-image-wrap">
+              <img src="/IMG20261031115335.webp" alt="SAHRUDAYA Community Service" class="hero-photo" fetchpriority="high" />
+              <div class="hero-image-overlay"></div>
+              <div class="floating-badge badge-top">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                <span id="hero-floating-location">Hyderabad, India</span>
+              </div>
+              <div class="floating-badge badge-bottom">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2b5d49" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Verified Community Partner</span>
+              </div>
+            </div>
+
+            <div class="hero-card">
+              <div class="hero-card-header">
+                <span class="hero-card-badge">✨ Core Mission</span>
+                <h3>Education &amp; Compassion</h3>
+              </div>
+              <p class="mission-text">
+                "To help everyone get education so that they realise the full potential of being a human and help others with a kind heart."
+              </p>
+              <div class="hero-card-points">
+                <div class="hero-card-point">
+                  <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Strategic Community Outreach &amp; Support</span>
+                </div>
+                <div class="hero-card-point">
+                  <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Educational Sponsorships &amp; Healthcare Aid</span>
+                </div>
+                <div class="hero-card-point">
+                  <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Ethical, Accountable &amp; Modern Governance</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         Who We Are / Core Pillars
+         ======================================================================= -->
+    <section id="about" class="section section-warm fade-in">
       <div class="container">
         <div class="section-header">
-          <h1 class="hero-statement" id="hero-statement">Every Donation Creates Hope</h1>
-          <p class="section-meta">Who We Are</p>
+          <span class="section-meta">Who We Are</span>
           <h2>Professional Community Leadership</h2>
-          <p>Sahrudayam Sada Vaanchitam</p>
-          <p>To have people with a kind heart across the globe so that everyone shares happiness.</p>
-          <h3>Mission</h3>
-          <p class="mission-text">To help everyone get education so that they realise the full potential of being a
-            human and help others with a kind heart.</p>
-          <p>SAHRUDAYA empowers members and partners with strategic support, expert guidance, and a premium corporate
-            experience.</p>
+          <p>SAHRUDAYA empowers members and partners with strategic support, expert guidance, and a premium organizational experience.</p>
         </div>
         <div class="glass-grid">
           <article class="glass-card">
+            <div class="card-icon-pill">🎯</div>
             <h3>Strategy</h3>
-            <p>We design initiatives that align community service with organizational values and long-term goals.</p>
+            <p>We design initiatives that align community service with organizational values, measurable outcomes, and long-term sustainable goals.</p>
           </article>
           <article class="glass-card">
+            <div class="card-icon-pill">📈</div>
             <h3>Impact</h3>
-            <p>Every engagement is measured for quality, growth, and meaningful progress across stakeholders.</p>
+            <p>Every engagement is measured for quality, growth, and meaningful progress across stakeholders, students, and families.</p>
           </article>
           <article class="glass-card">
+            <div class="card-icon-pill">🤝</div>
             <h3>Trust</h3>
-            <p>We build confidence through transparency, modern processes, and consistent execution.</p>
+            <p>We build confidence through complete transparency, audited processes, responsible resource allocation, and consistent execution.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="images" class="section section-gallery fade-in">
+    <!-- =======================================================================
+         Moments of Service (WeHive Slider Frame)
+         ======================================================================= -->
+    <section id="images" class="section fade-in">
       <div class="container">
         <div class="section-header">
-          <p class="section-meta">Our Work</p>
-          <h2>Moments of service</h2>
-          <p>Real moments from the people and communities we are here to serve.</p>
+          <span class="section-meta">Our Work</span>
+          <h2>Moments of Service</h2>
+          <p>Real moments from the people, students, and communities we are here to serve.</p>
         </div>
         <div class="gallery-grid">
-          <article class="glass-card gallery-card">
+          <article class="gallery-card">
             <div class="gallery-viewer" id="gallery-viewer" tabindex="0" role="region" aria-roledescription="carousel"
               aria-label="Moments of service gallery">
               <div class="gallery-track" id="gallery-track"></div>
@@ -101,117 +193,189 @@
             </div>
           </article>
         </div>
+        <div style="text-align: center; margin-top: 1.25rem;">
+          <a href="/moments-of-service.html" class="btn-secondary" style="font-size: 13.5px; height: 40px; padding: 0 20px;">
+            View Complete Year-Wise Archives &rarr;
+          </a>
+        </div>
       </div>
     </section>
 
-    <section id="services" class="section fade-in">
+    <!-- =======================================================================
+         Our Services (WeHive Cards)
+         ======================================================================= -->
+    <section id="services" class="section section-warm fade-in">
       <div class="container">
         <div class="section-header">
-          <p class="section-meta">Our Services</p>
-          <h2>Executive Support and Community Programs</h2>
+          <span class="section-meta">Our Services</span>
+          <h2>Executive Support &amp; Community Programs</h2>
+          <p>Comprehensive initiatives designed to empower communities, students, and volunteer leaders.</p>
         </div>
         <div class="cards">
           <article class="glass-card">
+            <div class="card-icon-pill">🌐</div>
             <h3>Community Outreach</h3>
-            <p>High-impact programs for education, health, and neighborhood engagement.</p>
+            <p>High-impact programs for grassroots education, basic healthcare access, nutrition drives, and neighborhood engagement.</p>
           </article>
           <article class="glass-card">
+            <div class="card-icon-pill">📅</div>
             <h3>Event Planning</h3>
-            <p>Professional workshops and initiatives that elevate participation and results.</p>
+            <p>Professional workshops, charity initiatives, leadership seminars, and community forums that elevate participation and tangible results.</p>
           </article>
           <article class="glass-card">
+            <div class="card-icon-pill">🧭</div>
             <h3>Leadership Advisory</h3>
-            <p>Guidance for governance, volunteer teams, and long-term planning.</p>
+            <p>Executive guidance for volunteer teams, compliance governance, institutional partnerships, and long-term roadmap planning.</p>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- =======================================================================
+         Membership Section (WeHive Featured Tier Style)
+         ======================================================================= -->
     <section id="membership" class="section fade-in">
-      <div class="container membership-wrap">
-        <div class="section-header membership-header">
-          <p class="section-meta">Membership</p>
-          <h2>Become a SAHRUDAYA member</h2>
-          <p>Join a growing network of people who believe in service, leadership, and positive community impact.</p>
-        </div>
-
-        <div id="membership-guest-view">
-          <a class="membership-button" href="/member-login.html">
-            Login / Sign In
-          </a>
-        </div>
-        <div id="membership-user-view" style="display: none;">
-          <p style="font-size: 1.15rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--text);">Welcome, <span id="member-welcome-name">Member</span>!</p>
-          <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem;">Logged in as <strong id="member-welcome-email"></strong></p>
-          <button type="button" class="membership-button" id="member-home-logout" style="background: #b54343; border: 0; cursor: pointer;">Log out</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="executive-board" class="section fade-in">
       <div class="container">
         <div class="section-header">
-          <p class="section-meta">Executive Board</p>
+          <span class="section-meta">Membership</span>
+          <h2>Join the SAHRUDAYA Network</h2>
+          <p>Join a growing network of leaders, professionals, and changemakers committed to selfless community service.</p>
+        </div>
+
+        <div class="membership-card">
+          <div class="membership-copy">
+            <h2>Become a SAHRUDAYA Member</h2>
+            <p>Collaborate with dedicated individuals across the globe who believe in service, leadership, and meaningful social progress.</p>
+            <div class="membership-features">
+              <div class="membership-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Direct involvement in community welfare &amp; educational aid programs</span>
+              </div>
+              <div class="membership-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Invitations to leadership workshops, conferences, and annual meetings</span>
+              </div>
+              <div class="membership-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Transparent governance reporting and organizational voting rights</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="membership-action-box">
+            <div id="membership-guest-view">
+              <h3>Member Portal</h3>
+              <p>Access your member benefits or create a new account today.</p>
+              <a class="membership-button" href="/member-login.html" style="margin-bottom: 10px;">
+                Login / Sign In
+              </a>
+              <div style="margin-top: 12px; font-size: 13px; color: var(--muted);">
+                New to SAHRUDAYA? <a href="/member-register.html" style="color: var(--leaf); font-weight: 600; text-decoration: underline;">Create an account</a>
+              </div>
+            </div>
+
+            <div id="membership-user-view" style="display: none;">
+              <div style="width: 52px; height: 52px; border-radius: 50%; background: #e1ede6; color: var(--leaf); font-size: 24px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">👤</div>
+              <h3 style="font-size: 1.4rem; margin-bottom: 4px;">Welcome, <span id="member-welcome-name">Member</span>!</h3>
+              <p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 1.25rem;">Logged in as <strong id="member-welcome-email"></strong></p>
+              <button type="button" class="membership-button" id="member-home-logout" style="background: #a32f2f;">
+                Log out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         Executive Board (Editorial Leadership Cards)
+         ======================================================================= -->
+    <section id="executive-board" class="section section-warm fade-in">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-meta">Executive Board</span>
           <h2>Meet Our Leadership Team</h2>
+          <p>Distinguished leaders guiding our mission with vision, discipline, and corporate clarity.</p>
         </div>
         <div class="board-list">
-          <article class="glass-card">
-            <h3>P.Chandramouleeswara Rao</h3>
-            <h5>President</h5>
-            <p>Guiding our mission with vision, discipline, and corporate clarity.</p>
+          <article class="glass-card board-card">
+            <div class="board-avatar">P</div>
+            <h3>P. Chandramouleeswara Rao</h3>
+            <span class="board-role-badge">President</span>
+            <p>Guiding our mission with vision, discipline, ethical leadership, and corporate clarity.</p>
           </article>
-          <article class="glass-card">
+          <article class="glass-card board-card">
+            <div class="board-avatar">A</div>
             <h3>A V Rama Kotaiah</h3>
-            <h5>Secretary</h5>
-            <p>Delivering precise coordination across members, partnerships, and communications.</p>
+            <span class="board-role-badge">Secretary</span>
+            <p>Delivering precise coordination across members, institutional partnerships, and communications.</p>
           </article>
-          <article class="glass-card">
+          <article class="glass-card board-card">
+            <div class="board-avatar">G</div>
             <h3>G. Chiranjeevi</h3>
-            <h5>Treasurer</h5>
-            <p>Maintaining financial transparency and responsible resource management.</p>
+            <span class="board-role-badge">Treasurer</span>
+            <p>Maintaining financial transparency, responsible resource management, and audited compliance.</p>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- =======================================================================
+         Contact Section (WeHive 2-Column Grid)
+         ======================================================================= -->
     <section id="contact" class="section fade-in">
       <div class="container contact-grid">
         <div class="contact-copy">
-          <p class="section-meta">Contact</p>
-          <h2>Ready to collaborate?</h2>
-          <p>Reach out for partnership opportunities, leadership inquiries, or to learn more about our programs.</p>
-          <ul class="contact-list">
-            <li><strong>Email</strong> <span id="contact-email-primary">sahrudaya.wa@gmail.com</span></li>
-            <li><strong>Email</strong> <span id="contact-email-secondary">swan@sahrudaya-wa.org</span></li>
-
-            <li><strong>Phone</strong> <span id="contact-phone">+91 9440331420</span></li>
-            <li><strong>Location</strong> <span id="contact-location">India</span></li>
-          </ul>
-          <div class="social-links">
-            <a href="#" aria-label="LinkedIn">in</a>
-            <a href="#" aria-label="Twitter">tw</a>
-            <a href="#" aria-label="Instagram">ig</a>
+          <div>
+            <span class="section-meta">Contact</span>
+            <h2>Ready to collaborate?</h2>
+            <p>Reach out for partnership opportunities, leadership inquiries, or to learn more about our community programs.</p>
+            <ul class="contact-list">
+              <li>
+                <strong>Primary Email</strong>
+                <span id="contact-email-primary">sahrudaya.wa@gmail.com</span>
+              </li>
+              <li>
+                <strong>Official Email</strong>
+                <span id="contact-email-secondary">swan@sahrudaya-wa.org</span>
+              </li>
+              <li>
+                <strong>Telephone</strong>
+                <span id="contact-phone">+91 9440331420</span>
+              </li>
+              <li>
+                <strong>Headquarters</strong>
+                <span id="contact-location">India</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div class="social-links">
+              <a href="#" aria-label="LinkedIn">in</a>
+              <a href="#" aria-label="Twitter">tw</a>
+              <a href="#" aria-label="Instagram">ig</a>
+            </div>
           </div>
         </div>
 
         <form id="contact-form" class="contact-form">
           <label>
-            <span>Name</span>
+            <span>Full Name</span>
             <input type="text" name="name" placeholder="Your name" required />
           </label>
           <label>
-            <span>Email</span>
+            <span>Email Address</span>
             <input type="email" name="email" placeholder="you@example.com" required />
           </label>
           <label>
             <span>Message</span>
-            <textarea name="message" placeholder="Your message" required></textarea>
+            <textarea name="message" placeholder="How can we help or collaborate?" required></textarea>
           </label>
           <label>
-            <span>Captcha</span>
+            <span>Verification Question</span>
             <div class="captcha-row">
               <span id="captcha-question">Loading captcha...</span>
-              <input type="text" id="captcha-answer" placeholder="Enter captcha answer" required />
+              <input type="text" id="captcha-answer" placeholder="Enter answer" required />
             </div>
           </label>
           <button type="submit">Send Message</button>
@@ -221,21 +385,55 @@
     </section>
   </main>
 
-  <footer class="site-footer section-dark">
-    <div class="container footer-grid">
-      <div>
-        <p class="footer-logo">SAHRUDAYA</p>
-        <p>Professional leadership and community service designed for modern organizations.</p>
+  <!-- =======================================================================
+       Footer (WeHive Multi-Column Footer)
+       ======================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <span class="footer-brand">
+            <strong>SAHRUDAYA</strong>
+          </span>
+          <p>Professional leadership and community service designed for modern organizations and lasting social impact.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Who We Are</a></li>
+            <li><a href="/moments-of-service.html">Moments of Service</a></li>
+            <li><a href="#services">Our Services</a></li>
+            <li><a href="#executive-board">Executive Board</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Member Area</h4>
+          <ul>
+            <li><a href="/member-login.html">Member Sign In</a></li>
+            <li><a href="/member-register.html">Become a Member</a></li>
+            <li><a href="/forgot-password.html">Forgot Password</a></li>
+            <li><a href="/admin-login.html">Admin Console</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact &amp; Location</h4>
+          <ul>
+            <li id="footer-location">India</li>
+            <li id="footer-phone">+91 9440331420</li>
+            <li id="footer-email-primary">sahrudaya.wa@gmail.com</li>
+            <li id="footer-email-secondary">swan@sahrudaya-wa.org</li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <p class="footer-heading">Contact</p>
-        <p id="footer-email-secondary">swan@sahrudaya-wa.org</p>
-        <p id="footer-email-primary">sahrudaya.wa@gmail.com</p>
-        <p id="footer-phone">+91 9440331420</p>
-      </div>
-      <div>
-        <p class="footer-heading">Follow Us</p>
-        <div class="social-links footer-social">
+
+      <div class="footer-bottom">
+        <div class="footer-contact-line">
+          <span>&copy; <span id="current-year">2026</span> SAHRUDAYA. All rights reserved.</span>
+          <span class="footer-divider">&bull;</span>
+          <a href="/admin-login.html">Admin Portal</a>
+        </div>
+        <div class="social-links">
           <a href="#" aria-label="LinkedIn">in</a>
           <a href="#" aria-label="Twitter">tw</a>
           <a href="#" aria-label="Instagram">ig</a>
@@ -244,18 +442,22 @@
     </div>
   </footer>
 
+  <!-- =======================================================================
+       Application Scripts (Fully Preserved)
+       ======================================================================= -->
   <script>
     document.documentElement.style.scrollBehavior = 'smooth';
     const masthead = document.getElementById('site-header');
     const sections = document.querySelectorAll('.fade-in');
 
+    let isScrolled = false;
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        masthead.classList.add('scrolled');
-      } else {
-        masthead.classList.remove('scrolled');
+      const shouldBeScrolled = window.scrollY > 20;
+      if (shouldBeScrolled !== isScrolled) {
+        isScrolled = shouldBeScrolled;
+        masthead.classList.toggle('scrolled', isScrolled);
       }
-    });
+    }, { passive: true });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -268,6 +470,11 @@
 
     sections.forEach((section) => observer.observe(section));
 
+    // Dynamic Current Year in Footer
+    const currentYearEl = document.getElementById('current-year');
+    if (currentYearEl) currentYearEl.textContent = new Date().getFullYear();
+
+    // Contact Form & Math Captcha Logic
     const form = document.getElementById('contact-form');
     const statusText = document.getElementById('form-status');
     const captchaQuestion = document.getElementById('captcha-question');
@@ -320,11 +527,12 @@
         }
       } catch (error) {
         console.error(error);
-        statusText.textContent = 'Unable to send message. Check server/MongoDB.';
+        statusText.textContent = 'Unable to send message. Check server connection.';
         generateCaptcha();
       }
     });
 
+    // Moments of Service Gallery & Smooth Touch/Drag Slider
     const galleryViewer = document.getElementById('gallery-viewer');
     const galleryTrack = document.getElementById('gallery-track');
     const galleryPrev = document.getElementById('gallery-prev');
@@ -344,6 +552,7 @@
     let trackIndex = 1;
     let isHovered = false;
     let isDragging = false;
+    let isTransitioning = false;
     let dragStartX = 0;
     let dragDeltaX = 0;
     let activePointerId = null;
@@ -354,199 +563,208 @@
       const slide = document.createElement('div');
       slide.className = 'gallery-slide';
 
-      const backdrop = document.createElement('img');
-      backdrop.className = 'gallery-slide-backdrop';
-      backdrop.src = imageUrl;
-      backdrop.alt = '';
-      backdrop.setAttribute('aria-hidden', 'true');
-      backdrop.draggable = false;
+      const main = document.createElement('img');
+      main.className = 'gallery-slide-main';
+      main.src = imageUrl;
+      main.alt = altText || 'Moment of Service';
+      main.loading = 'lazy';
 
-      const image = document.createElement('img');
-      image.className = 'gallery-image';
-      image.src = imageUrl;
-      image.alt = altText;
-      image.draggable = false;
-
-      slide.appendChild(backdrop);
-      slide.appendChild(image);
+      slide.appendChild(main);
       return slide;
     }
 
-    function getActiveImageIndex() {
-      const total = galleryImages.length;
-      if (total <= 1) return 0;
-      if (trackIndex === 0) return total - 1;
-      if (trackIndex === total + 1) return 0;
-      return trackIndex - 1;
-    }
+    function renderGalleryDots() {
+      if (!galleryDots) return;
+      galleryDots.innerHTML = '';
+      const count = galleryImages.length;
+      if (count <= 1) return;
 
-    function applyTrackTransform(withTransition, extraPx = 0) {
-      galleryTrack.style.transition = withTransition
-        ? 'transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)'
-        : 'none';
-      galleryTrack.style.transform = extraPx
-        ? `translateX(calc(-${trackIndex * 100}% + ${extraPx}px))`
-        : `translateX(-${trackIndex * 100}%)`;
-    }
-
-    function updateIndicators() {
-      const total = galleryImages.length;
-      const activeIndex = getActiveImageIndex();
-      const dots = galleryDots.querySelectorAll('.gallery-dot');
-      dots.forEach((dot, idx) => {
-        const isCurrent = idx === activeIndex;
-        dot.classList.toggle('active', isCurrent);
-        dot.setAttribute('aria-current', isCurrent ? 'true' : 'false');
-      });
-      galleryCounter.textContent = total ? `${activeIndex + 1} / ${total}` : '';
-      const hasMultiple = total > 1;
-      galleryPrev.hidden = !hasMultiple;
-      galleryNext.hidden = !hasMultiple;
-    }
-
-    function normalizeClonePosition() {
-      const total = galleryImages.length;
-      if (total <= 1) return;
-      if (trackIndex === 0) {
-        trackIndex = total;
-        applyTrackTransform(false);
-        void galleryTrack.offsetWidth;
-      } else if (trackIndex === total + 1) {
-        trackIndex = 1;
-        applyTrackTransform(false);
-        void galleryTrack.offsetWidth;
+      const activeRealIndex = (trackIndex - 1 + count) % count;
+      for (let i = 0; i < count; i += 1) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = `gallery-dot${i === activeRealIndex ? ' active' : ''}`;
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        dot.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (isTransitioning) return;
+          trackIndex = i + 1;
+          applyTrackTransform(true, 0);
+          updateGalleryUI();
+          startAutoSlide();
+        });
+        galleryDots.appendChild(dot);
       }
     }
 
-    function stepSlide(delta) {
-      const total = galleryImages.length;
-      if (total <= 1) return;
-      normalizeClonePosition();
-      trackIndex = Math.max(0, Math.min(total + 1, trackIndex + delta));
-      applyTrackTransform(true);
-      updateIndicators();
-      window.clearTimeout(wrapFallbackTimer);
-      wrapFallbackTimer = window.setTimeout(normalizeClonePosition, 700);
+    function updateGalleryUI() {
+      const count = galleryImages.length;
+      if (!count) return;
+      const activeRealIndex = (trackIndex - 1 + count) % count;
+      if (galleryCounter) {
+        galleryCounter.textContent = `${activeRealIndex + 1} / ${count}`;
+      }
+      if (galleryDots) {
+        const dots = galleryDots.querySelectorAll('.gallery-dot');
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === activeRealIndex);
+        });
+      }
     }
 
-    function goToSlide(realIndex) {
-      const total = galleryImages.length;
-      if (total <= 1) return;
-      normalizeClonePosition();
-      trackIndex = realIndex + 1;
-      applyTrackTransform(true);
-      updateIndicators();
+    function applyTrackTransform(withTransition = true, offsetPx = 0) {
+      if (!galleryTrack) return;
+      galleryTrack.style.transition = withTransition ? 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)' : 'none';
+      galleryTrack.style.transform = `translateX(calc(-${trackIndex * 100}% + ${offsetPx}px))`;
+    }
+
+    function stepSlide(direction = 1) {
+      const count = galleryImages.length;
+      if (count <= 1 || isTransitioning) return;
+      isTransitioning = true;
+      trackIndex += direction;
+      applyTrackTransform(true, 0);
+      updateGalleryUI();
+
+      clearTimeout(wrapFallbackTimer);
+      wrapFallbackTimer = setTimeout(() => {
+        handleTrackBoundary();
+        isTransitioning = false;
+      }, 480);
+    }
+
+    function handleTrackBoundary() {
+      const count = galleryImages.length;
+      if (count <= 1) return;
+      if (trackIndex >= count + 1) {
+        trackIndex = 1;
+        applyTrackTransform(false, 0);
+        updateGalleryUI();
+      } else if (trackIndex <= 0) {
+        trackIndex = count;
+        applyTrackTransform(false, 0);
+        updateGalleryUI();
+      }
+      isTransitioning = false;
+    }
+
+    if (galleryTrack) {
+      galleryTrack.addEventListener('transitionend', (e) => {
+        if (e.target === galleryTrack) {
+          handleTrackBoundary();
+        }
+      });
+    }
+
+    function renderGalleryTrack() {
+      if (!galleryTrack || !galleryViewer) return;
+      galleryTrack.innerHTML = '';
+      const count = galleryImages.length;
+      if (!count) return;
+
+      if (count === 1) {
+        galleryTrack.appendChild(createSlideElement(galleryImages[0], 'Moments of Service'));
+        trackIndex = 0;
+        applyTrackTransform(false, 0);
+        updateGalleryUI();
+        if (galleryPrev) galleryPrev.style.display = 'none';
+        if (galleryNext) galleryNext.style.display = 'none';
+        return;
+      }
+
+      if (galleryPrev) galleryPrev.style.display = 'flex';
+      if (galleryNext) galleryNext.style.display = 'flex';
+
+      // Clones for seamless infinite looping
+      const firstClone = createSlideElement(galleryImages[0], 'Moments of Service (clone)');
+      const lastClone = createSlideElement(galleryImages[count - 1], 'Moments of Service (clone)');
+
+      galleryTrack.appendChild(lastClone);
+      galleryImages.forEach((img, idx) => {
+        galleryTrack.appendChild(createSlideElement(img, `Moment of Service ${idx + 1}`));
+      });
+      galleryTrack.appendChild(firstClone);
+
+      trackIndex = 1;
+      applyTrackTransform(false, 0);
+      renderGalleryDots();
+      updateGalleryUI();
       startAutoSlide();
     }
 
     function startAutoSlide() {
-      window.clearInterval(autoSlideTimer);
+      clearInterval(autoSlideTimer);
       if (galleryImages.length <= 1) return;
-      autoSlideTimer = window.setInterval(() => {
-        if (!isHovered && !isDragging && !document.hidden) {
+      autoSlideTimer = setInterval(() => {
+        if (!isHovered && !isDragging && !isTransitioning) {
           stepSlide(1);
         }
-      }, 4000);
+      }, 2800);
     }
 
-    function renderGalleryTrack() {
-      window.clearTimeout(wrapFallbackTimer);
-      galleryTrack.innerHTML = '';
-      galleryDots.innerHTML = '';
-
-      if (!galleryImages.length) {
-        const emptyState = document.createElement('div');
-        emptyState.className = 'gallery-empty-state';
-        galleryTrack.appendChild(emptyState);
-        trackIndex = 0;
-        applyTrackTransform(false);
-        updateIndicators();
-        return;
-      }
-
-      if (galleryImages.length === 1) {
-        galleryTrack.appendChild(createSlideElement(galleryImages[0], 'Gallery image 1'));
-        trackIndex = 0;
-        applyTrackTransform(false);
-        updateIndicators();
-        startAutoSlide();
-        return;
-      }
-
-      const lastIndex = galleryImages.length - 1;
-      galleryTrack.appendChild(
-        createSlideElement(galleryImages[lastIndex], `Gallery image ${galleryImages.length}`)
-      );
-
-      galleryImages.forEach((imageUrl, index) => {
-        galleryTrack.appendChild(createSlideElement(imageUrl, `Gallery image ${index + 1}`));
-
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'gallery-dot';
-        dot.setAttribute('aria-label', `Go to image ${index + 1}`);
-        dot.addEventListener('click', () => goToSlide(index));
-        galleryDots.appendChild(dot);
-      });
-
-      galleryTrack.appendChild(createSlideElement(galleryImages[0], 'Gallery image 1'));
-
-      trackIndex = 1;
-      applyTrackTransform(false);
-      updateIndicators();
-      startAutoSlide();
-    }
-
-    galleryTrack.addEventListener('transitionend', (event) => {
-      if (event.target === galleryTrack && event.propertyName === 'transform') {
-        window.clearTimeout(wrapFallbackTimer);
-        normalizeClonePosition();
-      }
-    });
-
-    galleryPrev.addEventListener('click', () => {
-      stepSlide(-1);
-      startAutoSlide();
-    });
-
-    galleryNext.addEventListener('click', () => {
-      stepSlide(1);
-      startAutoSlide();
-    });
-
-    galleryViewer.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowLeft') {
-        event.preventDefault();
+    // Button event listeners with full isolation from container drag handlers
+    if (galleryPrev) {
+      const onPrev = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         stepSlide(-1);
         startAutoSlide();
-      } else if (event.key === 'ArrowRight') {
-        event.preventDefault();
+      };
+      galleryPrev.addEventListener('pointerdown', (e) => e.stopPropagation());
+      galleryPrev.addEventListener('mousedown', (e) => e.stopPropagation());
+      galleryPrev.addEventListener('click', onPrev);
+    }
+
+    if (galleryNext) {
+      const onNext = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        stepSlide(1);
+        startAutoSlide();
+      };
+      galleryNext.addEventListener('pointerdown', (e) => e.stopPropagation());
+      galleryNext.addEventListener('mousedown', (e) => e.stopPropagation());
+      galleryNext.addEventListener('click', onNext);
+    }
+
+    galleryViewer.addEventListener('mouseenter', () => { isHovered = true; });
+    galleryViewer.addEventListener('mouseleave', () => { isHovered = false; });
+
+    // Keyboard navigation
+    galleryViewer.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        stepSlide(-1);
+        startAutoSlide();
+      } else if (e.key === 'ArrowRight') {
         stepSlide(1);
         startAutoSlide();
       }
     });
 
-    galleryViewer.addEventListener('pointerenter', (event) => {
-      if (event.pointerType === 'mouse') isHovered = true;
+    // Pause on hidden document tab, resume on visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        clearInterval(autoSlideTimer);
+      } else {
+        startAutoSlide();
+      }
     });
 
-    galleryViewer.addEventListener('pointerleave', (event) => {
-      if (event.pointerType === 'mouse') isHovered = false;
-    });
-
+    // Pointer Dragging for Touch/Mouse (safely ignoring arrow and control buttons)
     galleryViewer.addEventListener('pointerdown', (event) => {
-      if (event.pointerType === 'mouse' && event.button !== 0) return;
-      if (event.target.closest('button') || galleryImages.length <= 1) return;
-      normalizeClonePosition();
+      if (galleryImages.length <= 1) return;
+      if (event.target.closest('.gallery-arrow') || event.target.closest('.gallery-controls')) {
+        return;
+      }
       isDragging = true;
-      activePointerId = event.pointerId;
       dragStartX = event.clientX;
       dragDeltaX = 0;
-      galleryViewer.classList.add('is-dragging');
-      applyTrackTransform(false, 0);
+      activePointerId = event.pointerId;
       try {
         galleryViewer.setPointerCapture(event.pointerId);
       } catch (_) { }
+      applyTrackTransform(false, 0);
     });
 
     galleryViewer.addEventListener('pointermove', (event) => {
@@ -558,7 +776,6 @@
     function finishDrag(event) {
       if (!isDragging || event.pointerId !== activePointerId) return;
       isDragging = false;
-      galleryViewer.classList.remove('is-dragging');
       try {
         galleryViewer.releasePointerCapture(event.pointerId);
       } catch (_) { }
@@ -578,6 +795,7 @@
     galleryViewer.addEventListener('pointerup', finishDrag);
     galleryViewer.addEventListener('pointercancel', finishDrag);
 
+    // Application Settings Loader from Backend
     async function loadAppSettings() {
       try {
         const response = await fetch('/api/settings');
@@ -590,6 +808,8 @@
           ['contact-email-secondary', settings.contact_email_secondary],
           ['contact-phone', settings.contact_phone],
           ['contact-location', settings.contact_location],
+          ['hero-floating-location', settings.contact_location],
+          ['footer-location', settings.contact_location],
           ['footer-email-primary', settings.contact_email_primary],
           ['footer-email-secondary', settings.contact_email_secondary],
           ['footer-phone', settings.contact_phone],
@@ -606,6 +826,7 @@
     renderGalleryTrack();
     loadAppSettings();
 
+    // Dynamic Member Session Handling in Navigation & Membership Card
     async function initMemberSession() {
       try {
         const response = await fetch('/api/members/me', { credentials: 'same-origin' });
@@ -616,19 +837,20 @@
           const userView = document.getElementById('membership-user-view');
           const welcomeName = document.getElementById('member-welcome-name');
           const welcomeEmail = document.getElementById('member-welcome-email');
-          const navMember = document.getElementById('nav-member-link');
+          const navGuest = document.getElementById('nav-guest-actions');
+          const navMember = document.getElementById('nav-member-actions');
           const navMemberName = document.getElementById('nav-member-name');
-          const navLogout = document.getElementById('nav-member-logout');
+          const navUserAvatar = document.getElementById('nav-user-avatar');
 
           if (guestView) guestView.style.display = 'none';
           if (userView) userView.style.display = 'block';
           if (welcomeName) welcomeName.textContent = data.name;
           if (welcomeEmail) welcomeEmail.textContent = data.email || '';
-          if (navMember) {
-            navMember.style.display = 'inline-flex';
-            if (navMemberName) navMemberName.textContent = (data.name.split(' ')[0] || data.name);
-          }
-          if (navLogout) navLogout.style.display = 'inline-flex';
+          
+          if (navGuest) navGuest.style.display = 'none';
+          if (navMember) navMember.style.display = 'flex';
+          if (navMemberName) navMemberName.textContent = (data.name.split(' ')[0] || data.name);
+          if (navUserAvatar) navUserAvatar.textContent = (data.name[0] || 'M').toUpperCase();
         }
       } catch (_) { }
     }
